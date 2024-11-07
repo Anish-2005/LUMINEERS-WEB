@@ -37,7 +37,7 @@ export default function Home() {
 
       {/* Animated Heading Section */}
       <section className="relative flex justify-center items-center h-32">
-        <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 animate-heading" >
+        <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-purple-500 to-green-600 animate-heading" >
           LUMINEERS
         </h2>
       </section>
