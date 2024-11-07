@@ -39,14 +39,19 @@ This project is maintained by the following developers:
 | Maintainer      | GitHub Profile                                       |
 |-----------------|------------------------------------------------------|
 | <img src="https://github.com/Anish-2005.png?size=100" width="100" height="100" /> <br> **Anish Seth** | [github.com/Anish-2005](https://github.com/Anish-2005) |
-| <img src="https://github.com/maintainer2.png?size=100" width="100" height="100" /> <br> **Maintainer 2** | [github.com/maintainer2](https://github.com/maintainer2) |
+| <img src="https://github.com/Tiyasa-Mukherjee.png?size=100" width="100" height="100" /> <br> **Tiyasa-Mukherjee** | [github.com/Tiyasa-Mukherjee](https://github.com/Tiyasa-Mukherjee) |
 | <img src="https://github.com/maintainer3.png?size=100" width="100" height="100" /> <br> **Maintainer 3** | [github.com/maintainer3](https://github.com/maintainer3) |
 
 
 ## 📦 Installation
 To set up the project locally, follow these steps:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/username/lumineers-blog.git
-   cd lumineers-blog
+**Clone the repository**:
+  Using Github Desktop and Make clone into your Local System.
+
+  
+### Explanation:
+- `npm install`: Installs the necessary dependencies for the project.
+- `npm run dev`: Runs the Next.js development server for local development.
+- `npm run build`: Builds the project for production (optimized for performance).
+- `npm start`: Starts the application in production mode after building.
