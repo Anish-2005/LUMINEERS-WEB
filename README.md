@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lumineers - Travel & Adventure Blog Website
 
-## Getting Started
+Welcome to **Lumineers**, a vibrant platform for sharing travel and adventure stories. This blog website allows users to explore diverse travel experiences and helps creators share their journeys with an engaged community. With a sleek, dynamic UI and seamless browsing experience, Lumineers aims to bring adventures from around the world right to the user’s screen.
 
-First, run the development server:
+## 🚀 Purpose
+The main purpose of this website is to offer a space for travel enthusiasts and adventurers to:
+- **Read and discover** exciting travel blogs from various destinations.
+- **Share stories and tips** for their next adventure.
+- **Connect** with like-minded travelers and find inspiration for new trips.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌐 Tech Stack
+Lumineers was built using the following technologies:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Lumineers Blog Website
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This project is built with various technologies to provide a dynamic, optimized, and interactive experience.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Technologies and Features
 
-## Learn More
+- ![Next.js](https://img.shields.io/badge/-Next.js-05122A?style=flat&logo=next.js)  
+  **Next.js** - React framework for server-side rendering and static website generation.
 
-To learn more about Next.js, take a look at the following resources:
+- ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-05122A?style=flat&logo=tailwindcss)  
+  **Tailwind CSS** - Utility-first CSS framework for styling.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- ![PWA](https://img.shields.io/badge/-PWA-05122A?style=flat&logo=googlechrome)  
+  **PWA Support** - Enabling offline access and improved performance on mobile.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- ![Images](https://img.shields.io/badge/-Images-05122A?style=flat&logo=photo)  
+  **Optimized Images** - Efficient handling of images in Next.js for better performance.
 
-## Deploy on Vercel
+- ![Animations](https://img.shields.io/badge/-Animations-05122A?style=flat&logo=framer)  
+  **Animations** - Added via CSS and Framer Motion for an interactive experience.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 👨‍💻 Maintainers
+This project is maintained by the following developers:
+
+| Maintainer      | GitHub Profile                                       |
+|-----------------|------------------------------------------------------|
+| <img src="https://github.com/Anish-2005.png?size=100" width="100" height="100" /> <br> **Anish Seth** | [github.com/Anish-2005](https://github.com/Anish-2005) |
+| <img src="https://github.com/maintainer2.png?size=100" width="100" height="100" /> <br> **Maintainer 2** | [github.com/maintainer2](https://github.com/maintainer2) |
+| <img src="https://github.com/maintainer3.png?size=100" width="100" height="100" /> <br> **Maintainer 3** | [github.com/maintainer3](https://github.com/maintainer3) |
+
+
+## 📦 Installation
+To set up the project locally, follow these steps:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/username/lumineers-blog.git
+   cd lumineers-blog
