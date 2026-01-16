@@ -4,18 +4,16 @@ import Footer from '../Footer';
 import { motion } from 'framer-motion';
 import Navbar from '../Navbar';
 
-
 import { useEffect, useState } from 'react';
-
 export default function UploadPage() {
   const [stars, setStars] = useState([]);
-
+  const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
-    // Only run on client
+    setHasMounted(true);
     const arr = Array.from({ length: 100 }, (_, i) => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  animationDelay: `${Math.random() * 5}s`,
       key: i,
     }));
     setStars(arr);
@@ -23,22 +21,23 @@ export default function UploadPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-blue-900/20 to-black text-white font-sans relative overflow-hidden">
-      {/* Animated star background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
-        {stars.map(star => (
-          <div
-            key={star.key}
-            className="absolute w-[1px] h-[1px] bg-white rounded-full animate-twinkle"
-            style={{
-              left: star.left,
-              top: star.top,
-              animationDelay: star.animationDelay,
-            }}
-          />
-        ))}
-      </div>
-
+      {/* Animated star background - only render after mount to avoid hydration error */}
+      {hasMounted ? (
+        <div className="fixed inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+          {stars.map(star => (
+            <div
+              key={star.key}
+              className="absolute w-[1px] h-[1px] bg-white rounded-full animate-twinkle"
+              style={{
+                left: star.left,
+                top: star.top,
+                animationDelay: star.animationDelay,
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
       <div className="relative z-10">
         <Navbar />
         <section className="py-12">

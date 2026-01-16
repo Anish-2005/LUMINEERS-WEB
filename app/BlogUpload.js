@@ -438,7 +438,7 @@ export default function BlogUpload() {
 
                   {/* Image URL */}
                   <div>
-                    <label className="text-sm text-gray-400 mb-2 block flex items-center gap-2">
+                    <label className="text-sm text-gray-100 mb-2 block flex items-center gap-2">
                       <Camera size={16} />
                       Cover Image URL
                     </label>

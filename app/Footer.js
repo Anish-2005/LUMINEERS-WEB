@@ -1,25 +1,75 @@
+"use client";
+
+import { Heart, ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
+
 export default function Footer() {
-    return (
-        <footer className="relative">
-            {/* Gradient Divider */}
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-purple-500/40 to-transparent" />
-            <div className="max-w-6xl mx-auto px-6 py-12 text-center">
-                {/* Brand */}
-                <h2 className="text-2xl font-extrabold tracking-[0.35em] text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-blue-400">
-                    LUMINEERS
-                </h2>
-                {/* Tagline */}
-                <p className="mt-4 text-sm text-white/60 max-w-xl mx-auto leading-relaxed">
-                    A quiet place for ideas, stories, and creations —  
-                    built for those who explore, not rush.
-                </p>
-                {/* Soft Divider */}
-                <div className="mt-8 h-px w-32 mx-auto bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                {/* Copyright */}
-                <p className="mt-6 text-xs text-white/40 tracking-wide">
-                    © 2026 Lumineers · Crafted with care, not noise
-                </p>
-            </div>
-        </footer>
-    );
+  const [year, setYear] = useState(2026);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <footer className="border-t border-white/10 bg-gray-950">
+      <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          
+          {/* Left */}
+          <p className="text-sm text-gray-500 text-center md:text-left">
+            © {year} Lumineers. Built with
+            <Heart className="inline w-4 h-4 mx-1 text-red-400" />
+            care.
+          </p>
+
+          {/* Right */}
+          <nav className="flex items-center gap-6 text-sm">
+            <a
+              href="#"
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              Privacy
+            </a>
+            <a
+              href="#"
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              Terms
+            </a>
+            <a
+              href="#"
+              className="text-gray-500 hover:text-white transition-colors"
+            >
+              Contact
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      {/* Scroll to top */}
+      <button
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+        className={`fixed bottom-6 right-6 h-11 w-11 rounded-lg border border-white/10 bg-gray-900 text-gray-300 backdrop-blur transition-all hover:bg-gray-800 hover:text-white ${
+          showScrollTop
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4 pointer-events-none"
+        }`}
+      >
+        <ArrowUp className="w-4 h-4 mx-auto" />
+      </button>
+    </footer>
+  );
 }
