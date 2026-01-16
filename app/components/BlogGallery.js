@@ -1,15 +1,16 @@
 
 "use client";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, lazy, Suspense, useMemo, useCallback } from 'react';
 import { db } from '../firebase';
-import { collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { collection, query, orderBy, onSnapshot, limit } from 'firebase/firestore';
 
 import BlogGalleryControls from './BlogGalleryControls';
 import BlogGrid from './BlogGrid';
 import Pagination from './Pagination';
-import BlogDetailModal from './BlogDetailModal';
 import LoadingSpinner from './LoadingSpinner';
 import EmptyState from './EmptyState';
+
+const BlogDetailModal = lazy(() => import('./BlogDetailModal'));
 
 export default function BlogGallery() {
   const [blogs, setBlogs] = useState([]);
@@ -25,7 +26,7 @@ export default function BlogGallery() {
 
 
   useEffect(() => {
-    const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'));
+    const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'), limit(100));
     const unsub = onSnapshot(q, (snap) => {
       const blogData = snap.docs.map(doc => ({ 
         id: doc.id, 
@@ -53,15 +54,15 @@ export default function BlogGallery() {
     }));
   };
 
-  const formatDate = (date) => {
+  const formatDate = useCallback((date) => {
     return new Date(date).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
       year: 'numeric'
     });
-  };
+  }, []);
 
-  const getTimeAgo = (date) => {
+  const getTimeAgo = useCallback((date) => {
     const now = new Date();
     const diffMs = now - new Date(date);
     const diffMins = Math.floor(diffMs / 60000);
@@ -72,21 +73,23 @@ export default function BlogGallery() {
     if (diffHours < 24) return `${diffHours}h ago`;
     if (diffDays < 7) return `${diffDays}d ago`;
     return formatDate(date);
-  };
+  }, [formatDate]);
 
 
-  const filteredBlogs = blogs
-    .filter(blog => 
-      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.author?.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) => {
-      if (sortBy === 'newest') return b.createdAt - a.createdAt;
-      if (sortBy === 'oldest') return a.createdAt - b.createdAt;
-      return 0;
-    })
-    .map(blog => ({ ...blog, timeAgo: getTimeAgo(blog.createdAt) }));
+  const filteredBlogs = useMemo(() => {
+    return blogs
+      .filter(blog => 
+        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.author?.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        if (sortBy === 'newest') return b.createdAt - a.createdAt;
+        if (sortBy === 'oldest') return a.createdAt - b.createdAt;
+        return 0;
+      })
+      .map(blog => ({ ...blog, timeAgo: getTimeAgo(blog.createdAt) }));
+  }, [blogs, searchTerm, sortBy, getTimeAgo]);
 
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
   const paginatedBlogs = filteredBlogs.slice(
@@ -129,11 +132,13 @@ export default function BlogGallery() {
           setCurrentPage={setCurrentPage}
         />
       </div>
-      <BlogDetailModal
-        blog={selectedBlog}
-        onClose={() => setSelectedBlog(null)}
-        formatDate={formatDate}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <BlogDetailModal
+          blog={selectedBlog}
+          onClose={() => setSelectedBlog(null)}
+          formatDate={formatDate}
+        />
+      </Suspense>
     </div>
   );
 };

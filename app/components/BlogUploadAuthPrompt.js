@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Globe, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function BlogUploadAuthPrompt({ handleLogin }) {
   return (
@@ -53,7 +54,7 @@ export default function BlogUploadAuthPrompt({ handleLogin }) {
             onClick={handleLogin}
             className="relative w-full px-8 py-4 rounded-3xl bg-gray-900/90 backdrop-blur-xl border border-white/10 flex items-center justify-center gap-3 text-xl font-semibold hover:bg-gray-900/70 transition-all"
           >
-            <img 
+            <Image
               src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" 
               alt="Google" 
               className="w-6 h-6"

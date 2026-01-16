@@ -1,4 +1,6 @@
 import localFont from "next/font/local";
+import { Suspense } from "react";
+import ErrorBoundary from "./components/ErrorBoundary";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -30,7 +32,8 @@ export default function RootLayout({ children }) {
         <meta name="keywords" content="travel, blog, explorer, journey, adventure, stories, lumineers" />
         <meta name="author" content="Lumineers Web" />
         <meta name="robots" content="index, follow" />
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#3b82f6" />
         {/* Open Graph Meta Tags */}
         <meta property="og:title" content="LUMINEERS WEB" />
         <meta property="og:description" content="Share and discover travel stories from explorers around the world. Chronicle your journey and inspire others." />
@@ -44,7 +47,11 @@ export default function RootLayout({ children }) {
         <meta name="twitter:image" content="/favicon.svg" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <ErrorBoundary>
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+            {children}
+          </Suspense>
+        </ErrorBoundary>
       </body>
     </html>
   );

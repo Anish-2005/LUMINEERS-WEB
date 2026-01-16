@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { User, Clock } from 'lucide-react';
 
 export default function BlogDetailModal({ blog, onClose, formatDate }) {
@@ -29,10 +30,12 @@ export default function BlogDetailModal({ blog, onClose, formatDate }) {
           {/* Modal Content */}
           {blog.image && (
             <div className="relative h-64 md:h-80">
-              <img 
-                src={blog.image} 
+              <Image
+                src={blog.image}
                 alt={blog.title}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent" />
             </div>
@@ -41,10 +44,12 @@ export default function BlogDetailModal({ blog, onClose, formatDate }) {
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 {blog.authorPhoto ? (
-                  <img 
-                    src={blog.authorPhoto} 
+                  <Image
+                    src={blog.authorPhoto}
                     alt={blog.author}
-                    className="w-12 h-12 rounded-full border-2 border-white/20"
+                    width={48}
+                    height={48}
+                    className="rounded-full border-2 border-white/20"
                   />
                 ) : (
                   <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">

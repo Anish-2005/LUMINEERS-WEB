@@ -1,7 +1,8 @@
 import { AnimatePresence } from 'framer-motion';
+import { memo } from 'react';
 import BlogCard from './BlogCard';
 
-export default function BlogGrid({ blogs, likedBlogs, viewCounts, onLike, onView, onSelect }) {
+const BlogGrid = memo(function BlogGrid({ blogs, likedBlogs, viewCounts, onLike, onView, onSelect }) {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       <AnimatePresence>
@@ -19,4 +20,8 @@ export default function BlogGrid({ blogs, likedBlogs, viewCounts, onLike, onView
       </AnimatePresence>
     </div>
   );
-}
+});
+
+BlogGrid.displayName = 'BlogGrid';
+
+export default BlogGrid;

@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function Pagination({ totalPages, currentPage, setCurrentPage }) {
+const Pagination = memo(function Pagination({ totalPages, currentPage, setCurrentPage }) {
   if (totalPages <= 1) return null;
   return (
     <div className="flex justify-center items-center gap-2 mt-16">
@@ -45,4 +46,8 @@ export default function Pagination({ totalPages, currentPage, setCurrentPage }) 
       </button>
     </div>
   );
-}
+});
+
+Pagination.displayName = 'Pagination';
+
+export default Pagination;

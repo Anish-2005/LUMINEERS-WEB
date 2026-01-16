@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Image from 'next/image';
 import { User, LogOut } from "lucide-react";
 
 export default function BlogUploadHeader({ user, writingProgress, handleLogout }) {
@@ -10,10 +11,12 @@ export default function BlogUploadHeader({ user, writingProgress, handleLogout }
     >
       <div className="flex items-center gap-4">
         <motion.div whileHover={{ scale: 1.1 }} className="relative group">
-          <img
+          <Image
             src={user.photoURL}
             alt="author"
-            className="w-16 h-16 rounded-2xl border-2 border-white/20 shadow-xl"
+            width={64}
+            height={64}
+            className="rounded-2xl border-2 border-white/20 shadow-xl"
           />
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity" />
         </motion.div>

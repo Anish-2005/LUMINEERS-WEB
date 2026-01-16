@@ -19,7 +19,7 @@ export default function BlogUploadSidebar({ inspiration, handleInspirationClick,
               exit={{ opacity: 0, y: -10 }}
               className="text-gray-300 mb-4 italic"
             >
-              "{inspiration}"
+            &quot;{inspiration}&quot;
             </motion.p>
           )}
         </AnimatePresence>

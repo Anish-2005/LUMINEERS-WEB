@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { memo } from 'react';
 import { User, Calendar, Clock, Heart, Eye } from 'lucide-react';
 
-export default function BlogCard({ blog, liked, views, onLike, onView, onSelect }) {
+const BlogCard = memo(function BlogCard({ blog, liked, views, onLike, onView, onSelect }) {
   return (
     <motion.div
       layout
@@ -17,13 +19,14 @@ export default function BlogCard({ blog, liked, views, onLike, onView, onSelect 
     >
       {/* Card */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-gray-900/50 to-black/50 border border-white/10 backdrop-blur-sm hover:backdrop-blur-md transition-all duration-500 hover:border-white/20 cursor-pointer h-full">
-        {/* Image Container */}
         <div className="relative h-56 overflow-hidden">
           {blog.image ? (
-            <img 
-              src={blog.image} 
+            <Image
+              src={blog.image}
               alt={blog.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-blue-900/30 to-purple-900/30 flex items-center justify-center">
@@ -48,10 +51,12 @@ export default function BlogCard({ blog, liked, views, onLike, onView, onSelect 
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               {blog.authorPhoto ? (
-                <img 
-                  src={blog.authorPhoto} 
+                <Image
+                  src={blog.authorPhoto}
                   alt={blog.author}
-                  className="w-8 h-8 rounded-full border border-white/20"
+                  width={32}
+                  height={32}
+                  className="rounded-full border border-white/20"
                 />
               ) : (
                 <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
@@ -107,4 +112,8 @@ export default function BlogCard({ blog, liked, views, onLike, onView, onSelect 
       </div>
     </motion.div>
   );
-}
+});
+
+BlogCard.displayName = 'BlogCard';
+
+export default BlogCard;
