@@ -3,26 +3,42 @@ import { motion } from 'framer-motion';
 import BlogGallery from '../BlogGallery';
 import Footer from '../Footer';
 import Navbar from '../Navbar';
+import { useEffect, useState } from 'react';
 
 export default function BlogsPage() {
+  const [stars, setStars] = useState([]);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+    const arr = Array.from({ length: 30 }, (_, i) => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${i * 0.2}s`,
+      key: i,
+    }));
+    setStars(arr);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-blue-950/20 to-black text-white font-sans relative overflow-x-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-[1px] h-[1px] bg-white rounded-full animate-twinkle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${i * 0.2}s`,
-            }}
-          />
-        ))}
-      </div>
-
+      {/* Animated Background - only render after mount to avoid hydration error */}
+      {hasMounted ? (
+        <div className="fixed inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
+          {stars.map(star => (
+            <div
+              key={star.key}
+              className="absolute w-[1px] h-[1px] bg-white rounded-full animate-twinkle"
+              style={{
+                left: star.left,
+                top: star.top,
+                animationDelay: star.animationDelay,
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
       <div className="relative z-10">
         <Navbar />
         
@@ -44,22 +60,6 @@ export default function BlogsPage() {
                 Each journey is a new perspective waiting to be discovered.
               </p>
               
-              {/* Stats Bar */}
-              <div className="flex flex-wrap justify-center gap-8 mb-12">
-                {[
-                  { label: 'Active Explorers', value: '4.2K+' },
-                  { label: 'Countries', value: '164' },
-                  { label: 'Stories', value: '∞' },
-                  { label: 'Continents', value: '7' },
-                ].map((stat, i) => (
-                  <div key={i} className="text-center">
-                    <div className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
-                  </div>
-                ))}
-              </div>
             </motion.div>
           </div>
         </section>

@@ -54,7 +54,35 @@ export default function Navbar() {
             onMouseEnter={() => setHovered("logo")}
             onMouseLeave={() => setHovered("")}
           >
-            <div className="relative">
+            <div className="relative flex items-center gap-2">
+              {/* Inline SVG favicon */}
+              <span className="w-8 h-8 flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="lumineerGradient" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stopColor="#F472B6"/>
+                      <stop offset="50%" stopColor="#8B5CF6"/>
+                      <stop offset="100%" stopColor="#38BDF8"/>
+                    </linearGradient>
+                    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor="#FFFFFF"/>
+                      <stop offset="100%" stopColor="#A855F7"/>
+                    </radialGradient>
+                    <filter id="softGlow">
+                      <feGaussianBlur stdDeviation="6" result="blur"/>
+                      <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <circle cx="128" cy="128" r="92" stroke="url(#lumineerGradient)" strokeWidth="3" opacity="0.5"/>
+                  <circle cx="128" cy="128" r="64" stroke="url(#lumineerGradient)" strokeWidth="2" opacity="0.35"/>
+                  <path d="M128 86 L138 118 L170 128 L138 138 L128 170 L118 138 L86 128 L118 118 Z" fill="url(#coreGlow)" filter="url(#softGlow)"/>
+                  <circle cx="190" cy="90" r="5" fill="#38BDF8"/>
+                  <circle cx="70" cy="170" r="4" fill="#F472B6"/>
+                </svg>
+              </span>
               <h1 className="text-4xl md:text-5xl font-bold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-blue-400 transition-all duration-500 group-hover:tracking-[0.25em]">
                 LUMINEERS
               </h1>

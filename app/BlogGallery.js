@@ -149,10 +149,10 @@ export default function BlogGallery() {
                 <select 
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="bg-transparent focus:outline-none"
+                  className="bg-white/10 text-white placeholder-white focus:outline-none rounded-lg px-2 py-1 border border-white/20"
                 >
-                  <option value="newest">Newest First</option>
-                  <option value="oldest">Oldest First</option>
+                  <option value="newest" className="bg-gray-900 text-white">Newest First</option>
+                  <option value="oldest" className="bg-gray-900 text-white">Oldest First</option>
                 </select>
               </div>
 
