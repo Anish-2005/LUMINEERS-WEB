@@ -57,19 +57,6 @@ export default function Footer() {
           </nav>
         </div>
       </div>
-
-      {/* Scroll to top */}
-      <button
-        onClick={scrollToTop}
-        aria-label="Scroll to top"
-        className={`fixed bottom-6 right-6 h-11 w-11 rounded-lg border border-white/10 bg-gray-900 text-gray-300 backdrop-blur transition-all hover:bg-gray-800 hover:text-white ${
-          showScrollTop
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4 pointer-events-none"
-        }`}
-      >
-        <ArrowUp className="w-4 h-4 mx-auto" />
-      </button>
     </footer>
   );
 }

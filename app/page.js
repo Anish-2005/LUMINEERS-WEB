@@ -3,9 +3,9 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import Link from "next/link";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 
 export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });

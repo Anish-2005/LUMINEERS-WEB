@@ -1,8 +1,8 @@
 "use client";
-import BlogUpload from '../BlogUpload';
-import Footer from '../Footer';
+import BlogUpload from '../components/BlogUpload';
+import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
-import Navbar from '../Navbar';
+import Navbar from '../components/Navbar';
 
 import { useEffect, useState } from 'react';
 export default function UploadPage() {

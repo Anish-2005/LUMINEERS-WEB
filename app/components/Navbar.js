@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { auth } from "./firebase";
+import { auth } from "../firebase";
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
 export default function Navbar() {
@@ -54,10 +54,10 @@ export default function Navbar() {
             onMouseEnter={() => setHovered("logo")}
             onMouseLeave={() => setHovered("")}
           >
-            <div className="relative flex items-center gap-2">
-              {/* Inline SVG favicon */}
-              <span className="w-8 h-8 flex items-center justify-center">
-                <svg width="28" height="28" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div className="relative flex items-center gap-3">
+              {/* Inline SVG favicon, height matches font */}
+              <span className="inline-flex items-center align-middle h-[3.5em] w-[3.5em]">
+                <svg width="100%" height="100%" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" style={{display: 'block'}}>
                   <defs>
                     <linearGradient id="lumineerGradient" x1="0" y1="0" x2="1" y2="1">
                       <stop offset="0%" stopColor="#F472B6"/>
@@ -83,7 +83,7 @@ export default function Navbar() {
                   <circle cx="70" cy="170" r="4" fill="#F472B6"/>
                 </svg>
               </span>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-blue-400 transition-all duration-500 group-hover:tracking-[0.25em]">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-blue-400 transition-all duration-500 group-hover:tracking-[0.25em] align-middle">
                 LUMINEERS
               </h1>
               {/* Animated underline */}

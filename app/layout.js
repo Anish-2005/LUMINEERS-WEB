@@ -23,7 +23,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <link rel="icon" href="/favicon.svg" />
+      <head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="A vibrant travel blog platform for explorers to share journeys, stories, and inspiration. Discover authentic travel experiences and connect with fellow adventurers." />
+        <meta name="keywords" content="travel, blog, explorer, journey, adventure, stories, lumineers" />
+        <meta name="author" content="Lumineers Web" />
+        <meta name="robots" content="index, follow" />
+        <link rel="icon" href="/favicon.svg" />
+        {/* Open Graph Meta Tags */}
+        <meta property="og:title" content="LUMINEERS WEB" />
+        <meta property="og:description" content="Share and discover travel stories from explorers around the world. Chronicle your journey and inspire others." />
+        <meta property="og:image" content="/favicon.svg" />
+        <meta property="og:url" content="https://lumineers-web.com" />
+        <meta property="og:type" content="website" />
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="LUMINEERS WEB" />
+        <meta name="twitter:description" content="Share and discover travel stories from explorers around the world." />
+        <meta name="twitter:image" content="/favicon.svg" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>

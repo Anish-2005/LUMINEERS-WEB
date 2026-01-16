@@ -1,8 +1,8 @@
 "use client";
 import { motion } from 'framer-motion';
-import BlogGallery from '../BlogGallery';
-import Footer from '../Footer';
-import Navbar from '../Navbar';
+import BlogGallery from '../components/BlogGallery';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 import { useEffect, useState } from 'react';
 
 export default function BlogsPage() {
