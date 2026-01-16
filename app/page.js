@@ -1,115 +1,101 @@
-"use client";  // Enables client-side rendering for this component
+"use client";
 
-import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import Head from "next/head";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Navbar from "./Navbar";
+import Link from "next/link";
+import Footer from "./Footer";
 
 export default function Home() {
-  const [hover, setHover] = useState(false);
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [cursorPos ] = useState({ x: 0, y: 0 });
   const [cursorExpand, setCursorExpand] = useState(false);
 
-  // Track cursor position
-  useEffect(() => {
-    const moveCursor = (e) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
-  }, []);
 
+ 
+ // Navbar is now a component
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-indigo-800 to-black text-white font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-indigo-900 to-black text-white relative overflow-hidden">
       <Head>
-        <title>Travel & Adventure Blog</title>
-        <meta name="description" content="Explore the world with our travel stories" />
+        <title>Lumineers — Travel & Adventure</title>
+        <meta
+          name="description"
+          content="Lumineers is a modern travel and adventure blog featuring immersive stories, photography, and experiences from around the globe."
+        />
       </Head>
 
-      {/* Custom Animated Cursor */}
+      {/* Premium Cursor */}
       <div
-        className={`animated-cursor ${cursorExpand ? 'expand' : ''}`}
+        className={`fixed pointer-events-none z-50 rounded-full border border-white/30 transition-all duration-300 ${
+          cursorExpand ? "w-12 h-12 bg-white/10" : "w-6 h-6"
+        }`}
         style={{
           left: cursorPos.x,
           top: cursorPos.y,
-          transform: `translate(-50%, -50%)`,
+          transform: "translate(-50%, -50%)",
         }}
-      ></div>
+      />
 
-      {/* Animated Heading Section */}
-      <section className="relative flex justify-center items-center h-32">
-        <h2 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-purple-500 to-blue-600 animate-heading" >
-          LUMINEERS
-        </h2>
-      </section>
 
-      {/* Hero Section */}
-      <section className="relative flex items-center justify-center h-screen overflow-hidden">
+      <Navbar />
+
+      {/* Hero */}
+      <section className="relative h-[85vh] flex items-center justify-center">
         <Image
           src="https://c4.wallpaperflare.com/wallpaper/435/1011/720/evening-relaxation-wallpaper-preview.jpg"
-          alt="Travel Adventure"
-          layout="fill"
-          className="object-cover opacity-60"
+          alt="Adventure landscape"
+          fill
+          priority
+          className="object-cover"
         />
-        <div className="absolute z-10 text-center p-4">
-          <h1
-            className="text-5xl md:text-7xl font-bold tracking-wide mb-4 transition-transform duration-300 hover:scale-105 cursor-pointer"
-            onMouseEnter={() => setCursorExpand(true)}
-            onMouseLeave={() => setCursorExpand(false)}
-          >
-            Journey Beyond Limits
-          </h1>
-          <p className="text-lg md:text-2xl max-w-2xl mx-auto mb-8">
-            Discover our stories and tips for your next adventure!
-          </p>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-300 transform hover:scale-110 cursor-pointer"
-            onMouseEnter={() => setCursorExpand(true)}
-            onMouseLeave={() => setCursorExpand(false)}
-          >
-            Start Exploring
-          </button>
-        </div>
-      </section>
 
-      {/* Blog Highlights Section */}
-      <section className="py-20">
-        <h2 className="text-center text-3xl md:text-4xl font-bold mb-12 tracking-wide">Our Adventures</h2>
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
-          {[1, 2, 3].map((post) => (
-            <div
-              key={post}
-              className="relative rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 cursor-pointer"
-              onMouseEnter={() => {
-                setHover(true);
-                setCursorExpand(true);
-              }}
-              onMouseLeave={() => {
-                setHover(false);
-                setCursorExpand(false);
-              }}
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-10 shadow-2xl text-center">
+            <h2
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-pink-300 to-purple-400"
+              onMouseEnter={() => setCursorExpand(true)}
+              onMouseLeave={() => setCursorExpand(false)}
             >
-              <Image
-                src="https://c1.wallpaperflare.com/preview/967/926/391/bunting-wood-evening-fire.jpg"
-                alt={`Adventure ${post}`}
-                layout="responsive"
-                width={500}
-                height={300}
-                className="object-cover w-full h-60"
-              />
-              <div
-                className={`absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 ${hover ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}
-              >
-                <p className="text-lg font-semibold">Read More</p>
-              </div>
+              Journey Beyond Limits
+            </h2>
+
+            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto mb-10">
+              Thoughtfully curated travel stories, breathtaking visuals, and
+              real experiences — crafted for explorers, dreamers, and
+              storytellers.
+            </p>
+
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <Link href="/blogs">
+                <button
+                  className="px-10 py-3 rounded-xl font-semibold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all duration-300 shadow-lg hover:scale-105"
+                  onMouseEnter={() => setCursorExpand(true)}
+                  onMouseLeave={() => setCursorExpand(false)}
+                >
+                  Explore Blogs
+                </button>
+              </Link>
+
+              <Link href="/upload">
+                <button
+                  className="px-10 py-3 rounded-xl font-semibold border border-white/40 hover:bg-white/10 transition-all duration-300 hover:scale-105"
+                  onMouseEnter={() => setCursorExpand(true)}
+                  onMouseLeave={() => setCursorExpand(false)}
+                >
+                  Share Your Story
+                </button>
+              </Link>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-6 text-center">
-        <p className="text-gray-400 text-sm">© 2024 Lumineers | All rights reserved.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 }

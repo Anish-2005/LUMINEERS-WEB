@@ -1,4 +1,4 @@
-# 🌟 LUMINEERS - Travel & Adventure Blog
+# � LUMINEERS - Travel & Adventure Blog
 
 A modern, interactive travel and adventure blog built with Next.js, featuring stunning animations, custom cursor effects, and a beautiful gradient design. Explore the world through captivating stories and immersive user experiences.
 
