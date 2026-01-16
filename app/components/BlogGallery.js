@@ -15,6 +15,8 @@ import {
   Search,
   Filter
 } from 'lucide-react';
+import BlogCard from './BlogCard';
+import BlogModal from './BlogModal';
 
 export default function BlogGallery() {
   const [blogs, setBlogs] = useState([]);
@@ -110,41 +112,15 @@ export default function BlogGallery() {
             ref={containerRef}
           >
             {paginatedBlogs.map(blog => (
-              <motion.div
+              <BlogCard
                 key={blog.id}
-                className="bg-gray-900/80 rounded-xl shadow-lg p-6 flex flex-col gap-4 relative"
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 30, opacity: 0 }}
-                layout
-                onClick={() => { setSelectedBlog(blog); handleView(blog.id); }}
-              >
-                <div className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-pink-400" />
-                  <span className="text-xs text-white/70 font-semibold">{blog.author || 'Anonymous'}</span>
-                  <MapPin className="w-4 h-4 text-blue-400 ml-2" />
-                  <span className="text-xs text-white/70">{blog.location || 'Unknown'}</span>
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">{blog.title}</h3>
-                <p className="text-sm text-gray-300 line-clamp-4">{blog.content}</p>
-                <div className="flex items-center gap-3 mt-2">
-                  <Calendar className="w-4 h-4 text-purple-400" />
-                  <span className="text-xs text-white/60">{formatDate(blog.createdAt)}</span>
-                  <Clock className="w-4 h-4 text-cyan-400 ml-2" />
-                  <span className="text-xs text-white/60">{blog.readTime} min read</span>
-                </div>
-                <div className="flex items-center gap-4 mt-2">
-                  <button
-                    className={`flex items-center gap-1 text-xs font-semibold ${likedBlogs[blog.id] ? 'text-pink-400' : 'text-white/60'}`}
-                    onClick={e => { e.stopPropagation(); handleLike(blog.id); }}
-                  >
-                    <Heart className="w-4 h-4" /> {likedBlogs[blog.id] ? 'Liked' : 'Like'}
-                  </button>
-                  <span className="flex items-center gap-1 text-xs text-white/60">
-                    <Eye className="w-4 h-4" /> {viewCounts[blog.id] || 0} views
-                  </span>
-                </div>
-              </motion.div>
+                blog={blog}
+                liked={likedBlogs[blog.id]}
+                viewCount={viewCounts[blog.id]}
+                onLike={handleLike}
+                onView={handleView}
+                onClick={setSelectedBlog}
+              />
             ))}
           </motion.div>
         )}
@@ -170,51 +146,12 @@ export default function BlogGallery() {
       {/* Blog modal */}
       <AnimatePresence>
         {selectedBlog && (
-          <motion.div
-            className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedBlog(null)}
-          >
-            <motion.div
-              className="bg-gray-900 rounded-xl shadow-2xl p-8 max-w-2xl w-full relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={e => e.stopPropagation()}
-            >
-              <button
-                className="absolute top-4 right-4 text-white/60 hover:text-pink-400"
-                onClick={() => setSelectedBlog(null)}
-              >
-                ×
-              </button>
-              <h2 className="text-2xl font-bold text-white mb-4">{selectedBlog.title}</h2>
-              <div className="flex items-center gap-2 mb-2">
-                <User className="w-4 h-4 text-pink-400" />
-                <span className="text-xs text-white/70 font-semibold">{selectedBlog.author || 'Anonymous'}</span>
-                <MapPin className="w-4 h-4 text-blue-400 ml-2" />
-                <span className="text-xs text-white/70">{selectedBlog.location || 'Unknown'}</span>
-              </div>
-              <p className="text-sm text-gray-300 mb-4 whitespace-pre-line">{selectedBlog.content}</p>
-              <div className="flex items-center gap-3 mb-2">
-                <Calendar className="w-4 h-4 text-purple-400" />
-                <span className="text-xs text-white/60">{formatDate(selectedBlog.createdAt)}</span>
-                <Clock className="w-4 h-4 text-cyan-400 ml-2" />
-                <span className="text-xs text-white/60">{selectedBlog.readTime} min read</span>
-              </div>
-              <div className="flex items-center gap-4 mt-2">
-                <span className={`flex items-center gap-1 text-xs font-semibold ${likedBlogs[selectedBlog.id] ? 'text-pink-400' : 'text-white/60'}`}
-                >
-                  <Heart className="w-4 h-4" /> {likedBlogs[selectedBlog.id] ? 'Liked' : 'Like'}
-                </span>
-                <span className="flex items-center gap-1 text-xs text-white/60">
-                  <Eye className="w-4 h-4" /> {viewCounts[selectedBlog.id] || 0} views
-                </span>
-              </div>
-            </motion.div>
-          </motion.div>
+          <BlogModal
+            blog={selectedBlog}
+            liked={likedBlogs[selectedBlog.id]}
+            viewCount={viewCounts[selectedBlog.id]}
+            onClose={() => setSelectedBlog(null)}
+          />
         )}
       </AnimatePresence>
     </div>
