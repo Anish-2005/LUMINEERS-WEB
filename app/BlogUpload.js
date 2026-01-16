@@ -418,7 +418,7 @@ export default function BlogUpload() {
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       placeholder="Untitled Journey..."
-                      className="w-full text-3xl md:text-4xl font-bold bg-transparent border-none focus:outline-none placeholder-gray-600"
+                      className="w-full text-3xl md:text-4xl font-bold bg-transparent border-none focus:outline-none placeholder-white"
                       required
                     />
                     <div className="mt-2 h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
@@ -431,7 +431,7 @@ export default function BlogUpload() {
                       value={content}
                       onChange={(e) => setContent(e.target.value)}
                       placeholder="Begin your tale here... Let the words flow like a river through uncharted lands."
-                      className="w-full min-h-[300px] bg-transparent border-none focus:outline-none resize-none placeholder-gray-600 text-lg leading-relaxed"
+                      className="w-full min-h-[300px] bg-transparent border-none focus:outline-none resize-none placeholder-white text-lg leading-relaxed"
                       required
                     />
                   </div>
