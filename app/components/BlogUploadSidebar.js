@@ -1,97 +1,108 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, X, BookOpen, Camera, MapPin } from "lucide-react";
+import { Sparkles, X, BookOpen, Hash } from "lucide-react";
 
-export default function BlogUploadSidebar({ inspiration, handleInspirationClick, tags, handleAddTag, handleRemoveTag, characterCount, content }) {
+const suggestedTags = ["Adventure", "Culture", "Food", "Nature", "Urban", "Solo"];
+
+export default function BlogUploadSidebar({
+  inspiration,
+  handleInspirationClick,
+  tags,
+  handleAddTag,
+  handleRemoveTag,
+  characterCount,
+  content,
+}) {
+  const readTime = Math.max(Math.ceil(content.trim().split(/\s+/).filter(Boolean).length / 200), 1);
+  const completion = Math.min((characterCount / 2000) * 100, 100);
+
   return (
-    <div className="lg:col-span-1 space-y-6">
-      {/* Inspiration Card */}
-      <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <Sparkles className="text-yellow-400" />
-          <h3 className="font-semibold">Need Inspiration?</h3>
+    <aside className="space-y-4 lg:col-span-1">
+      <section className="surface p-5">
+        <div className="mb-3 flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-cyan-300" />
+          <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-slate-200">Writing prompt</h3>
         </div>
         <AnimatePresence mode="wait">
-          {inspiration && (
+          {inspiration ? (
             <motion.p
               key={inspiration}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="text-gray-300 mb-4 italic"
+              exit={{ opacity: 0, y: -6 }}
+              className="mb-3 rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-2 text-sm text-slate-300"
             >
-            &quot;{inspiration}&quot;
+              {inspiration}
             </motion.p>
+          ) : (
+            <p className="mb-3 text-sm text-slate-400">Generate a focused prompt when you need momentum.</p>
           )}
         </AnimatePresence>
-        <button
-          onClick={handleInspirationClick}
-          className="w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors text-sm"
-        >
-          Generate Prompt
+        <button onClick={handleInspirationClick} className="btn-secondary w-full justify-center text-xs uppercase tracking-[0.08em]">
+          Generate prompt
         </button>
-      </div>
-      {/* Tags */}
-      <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h3 className="font-semibold mb-4">Add Tags</h3>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {tags.map((tag) => (
-            <motion.span
-              key={tag}
-              layout
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 text-sm"
-            >
-              {tag}
-              <button
-                onClick={() => handleRemoveTag(tag)}
-                className="hover:text-red-400"
+      </section>
+
+      <section className="surface p-5">
+        <div className="mb-3 flex items-center gap-2">
+          <Hash className="h-4 w-4 text-blue-300" />
+          <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-slate-200">Tags</h3>
+        </div>
+        <div className="mb-3 flex min-h-[36px] flex-wrap gap-2">
+          {tags.length ? (
+            tags.map((tag) => (
+              <motion.span
+                key={tag}
+                layout
+                initial={{ scale: 0.92, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="inline-flex items-center gap-1 rounded-full border border-blue-400/35 bg-blue-500/15 px-2.5 py-1 text-xs text-blue-100"
               >
-                <X size={12} />
-              </button>
-            </motion.span>
-          ))}
+                {tag}
+                <button onClick={() => handleRemoveTag(tag)} className="text-blue-100/80 hover:text-white">
+                  <X size={12} />
+                </button>
+              </motion.span>
+            ))
+          ) : (
+            <p className="text-xs text-slate-500">Add up to 5 tags.</p>
+          )}
         </div>
         <div className="grid grid-cols-2 gap-2">
-          {["Adventure", "Culture", "Food", "Nature", "Urban", "Solo"].map((tag) => (
+          {suggestedTags.map((tag) => (
             <button
               key={tag}
               onClick={() => handleAddTag(tag)}
               disabled={tags.includes(tag)}
-              className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 disabled:opacity-30 transition-colors text-sm text-center"
+              className="rounded-lg border border-slate-700/70 bg-slate-900/75 px-2 py-2 text-xs text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-35"
             >
               {tag}
             </button>
           ))}
         </div>
-      </div>
-      {/* Stats */}
-      <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6">
-        <h3 className="font-semibold mb-4">Story Stats</h3>
-        <div className="space-y-4">
+      </section>
+
+      <section className="surface p-5">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-slate-200">Story metrics</h3>
+        <div className="mt-4 space-y-4 text-sm text-slate-300">
           <div>
-            <div className="flex justify-between text-sm mb-1">
-              <span className="text-gray-400">Characters</span>
-              <span className={characterCount > 1500 ? "text-green-400" : ""}>
-                {characterCount}/2000
-              </span>
+            <div className="mb-1 flex items-center justify-between text-xs uppercase tracking-[0.08em] text-slate-400">
+              <span>Character count</span>
+              <span>{characterCount} / 2000</span>
             </div>
-            <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+            <div className="h-2 overflow-hidden rounded-full bg-slate-800">
               <motion.div
-                className="h-full bg-gradient-to-r from-green-400 to-cyan-400"
+                className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
                 initial={{ width: 0 }}
-                animate={{ width: `${(characterCount / 2000) * 100}%` }}
+                animate={{ width: `${completion}%` }}
               />
             </div>
           </div>
-          <div className="text-sm text-gray-400">
-            <p className="flex items-center gap-2">
-              <BookOpen size={14} />
-              {Math.ceil(content.split(" ").length / 200)} min read
-            </p>
-          </div>
+          <p className="inline-flex items-center gap-2 text-slate-300">
+            <BookOpen size={14} />
+            Estimated read time: {readTime} min
+          </p>
         </div>
-      </div>
-    </div>
+      </section>
+    </aside>
   );
 }

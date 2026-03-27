@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
+import { AlertTriangle, RefreshCw } from "lucide-react";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -8,47 +9,46 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false, error: null, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
     this.setState({
-      error: error,
-      errorInfo: errorInfo
+      error,
+      errorInfo,
     });
-    // Log to error reporting service
-    console.error('Error caught by boundary:', error, errorInfo);
+    console.error("Error caught by boundary:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-[60vh] flex items-center justify-center px-6">
-          <div className="text-center">
-            <div className="w-32 h-32 rounded-full bg-gradient-to-br from-red-500/10 to-orange-500/10 flex items-center justify-center mb-6">
-              <div className="text-5xl">⚠️</div>
-            </div>
-            <h3 className="text-2xl font-bold mb-3">Something went wrong</h3>
-            <p className="text-gray-400 max-w-md mb-6">
-              We encountered an unexpected error. Please try refreshing the page.
+        <div className="page-shell flex min-h-screen items-center justify-center px-6">
+          <div className="surface-elevated w-full max-w-lg p-8 text-center">
+            <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-rose-400/40 bg-rose-500/15 text-rose-200">
+              <AlertTriangle size={22} />
+            </span>
+            <h3 className="mt-5 text-2xl font-semibold tracking-tight text-white">Something went wrong</h3>
+            <p className="mt-2 text-sm leading-relaxed text-slate-300">
+              An unexpected error interrupted rendering. Refresh the page and try again.
             </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold hover:from-blue-600 hover:to-purple-600 transition-all"
-            >
+            <button onClick={() => window.location.reload()} className="btn-primary mx-auto mt-6">
+              <RefreshCw size={15} />
               Refresh Page
             </button>
-            {process.env.NODE_ENV === 'development' && (
-              <details className="mt-6 text-left">
-                <summary className="cursor-pointer text-gray-400">Error Details</summary>
-                <pre className="text-xs text-red-400 mt-2 whitespace-pre-wrap">
-                  {this.state.error && this.state.error.toString()}
-                  <br />
-                  {this.state.errorInfo && this.state.errorInfo.componentStack}
+            {process.env.NODE_ENV === "development" ? (
+              <details className="mt-6 rounded-xl border border-slate-700/70 bg-slate-950/70 p-3 text-left">
+                <summary className="cursor-pointer text-xs uppercase tracking-[0.1em] text-slate-400">
+                  Error details
+                </summary>
+                <pre className="mt-3 whitespace-pre-wrap text-xs text-rose-300">
+                  {this.state.error ? this.state.error.toString() : ""}
+                  {"\n"}
+                  {this.state.errorInfo ? this.state.errorInfo.componentStack : ""}
                 </pre>
               </details>
-            )}
+            ) : null}
           </div>
         </div>
       );

@@ -1,58 +1,52 @@
 import { motion } from "framer-motion";
-import Image from 'next/image';
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, PenSquare } from "lucide-react";
 
 export default function BlogUploadHeader({ user, writingProgress, handleLogout }) {
   return (
     <motion.div
-      initial={{ y: -20, opacity: 0 }}
+      initial={{ y: -12, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10"
+      className="mb-6 flex flex-col gap-5 rounded-2xl border border-slate-700/70 bg-slate-900/70 p-4 sm:mb-8 sm:flex-row sm:items-center sm:justify-between sm:p-5"
     >
-      <div className="flex items-center gap-4">
-        <motion.div whileHover={{ scale: 1.1 }} className="relative group">
-          <Image
+      <div className="flex items-center gap-3">
+        {user.photoURL ? (
+          <img
             src={user.photoURL}
-            alt="author"
-            width={64}
-            height={64}
-            className="rounded-2xl border-2 border-white/20 shadow-xl"
+            alt={user.displayName || "Author"}
+            className="h-12 w-12 rounded-xl border border-slate-600/70 object-cover"
+            referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-20 transition-opacity" />
-        </motion.div>
+        ) : (
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-700/80 text-slate-200">
+            <User size={18} />
+          </div>
+        )}
         <div>
-          <p className="text-sm text-gray-400 flex items-center gap-2">
-            <User size={14} />
-            Writing as
-          </p>
-          <h2 className="text-2xl font-bold">{user.displayName}</h2>
-          <p className="text-sm text-gray-500">Explorer Level: Adventurer</p>
+          <p className="text-xs uppercase tracking-[0.1em] text-slate-400">Active author</p>
+          <h2 className="text-lg font-semibold text-slate-100">{user.displayName || "Explorer"}</h2>
+          <p className="text-xs text-slate-400">{user.email || "Authenticated session"}</p>
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        {/* Progress indicator */}
-        <div className="hidden md:block">
-          <div className="flex items-center gap-3">
-            <div className="w-48 h-2 bg-gray-800 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
-                initial={{ width: 0 }}
-                animate={{ width: `${writingProgress}%` }}
-                transition={{ duration: 0.5 }}
-              />
-            </div>
-            <span className="text-sm text-gray-400">{Math.round(writingProgress)}%</span>
+
+      <div className="flex items-center gap-3">
+        <div className="hidden rounded-xl border border-slate-700/70 bg-slate-900/80 px-3 py-2 sm:block">
+          <div className="mb-1 flex items-center gap-1.5 text-xs text-slate-400">
+            <PenSquare size={13} />
+            Draft progress
+          </div>
+          <div className="h-1.5 w-44 overflow-hidden rounded-full bg-slate-800">
+            <motion.div
+              className="h-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-300"
+              initial={{ width: 0 }}
+              animate={{ width: `${writingProgress}%` }}
+              transition={{ duration: 0.35 }}
+            />
           </div>
         </div>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleLogout}
-          className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 flex items-center gap-2 transition-all"
-        >
-          <LogOut size={16} />
+        <button onClick={handleLogout} className="btn-secondary px-3 py-2 text-xs">
+          <LogOut size={14} />
           Logout
-        </motion.button>
+        </button>
       </div>
     </motion.div>
   );

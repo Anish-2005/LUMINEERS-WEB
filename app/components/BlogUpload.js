@@ -1,15 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { db, auth } from "../firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import {
-  onAuthStateChanged,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
-} from "firebase/auth";
-
+import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import BlogUploadAuthPrompt from "./BlogUploadAuthPrompt";
 import BlogUploadHeader from "./BlogUploadHeader";
 import BlogUploadSidebar from "./BlogUploadSidebar";
@@ -23,38 +17,43 @@ export default function BlogUpload() {
   const [success, setSuccess] = useState(false);
   const [user, setUser] = useState(null);
   const [writingProgress, setWritingProgress] = useState(0);
-  const [activeTab, setActiveTab] = useState("write");
   const [inspiration, setInspiration] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const [tags, setTags] = useState([]);
-  const fileInputRef = useRef(null);
 
   const travelInspirations = [
-    "Describe a moment that took your breath away",
-    "Share a local tradition you experienced",
-    "Tell us about a stranger who became a friend",
-    "What unexpected discovery changed your journey?",
-    "Describe the taste of a memorable meal",
+    "Describe the moment the destination felt real.",
+    "Share one local ritual that changed your perspective.",
+    "Capture a conversation that defined the journey.",
+    "Write about a detour that became the highlight.",
+    "Document the sensory memory you still carry home.",
   ];
 
   useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => setUser(u));
+    const unsub = onAuthStateChanged(auth, (nextUser) => setUser(nextUser));
     return () => unsub();
   }, []);
 
   useEffect(() => {
-    const progress = ((title.length + content.length) / 2000) * 100;
+    const progress = ((title.length + content.length) / 2200) * 100;
     setWritingProgress(Math.min(progress, 100));
     setCharacterCount(content.length);
   }, [title, content]);
 
   const handleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   const handleLogout = async () => {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -79,81 +78,71 @@ export default function BlogUpload() {
       setImageUrl("");
       setTags([]);
       setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
-    } catch {
-      alert("Something went wrong. Try again.");
+      setTimeout(() => setSuccess(false), 2600);
+    } catch (error) {
+      console.error("Failed to publish story:", error);
+      alert("Unable to publish the story right now. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleAddTag = (tag) => {
     if (!tags.includes(tag) && tags.length < 5) {
-      setTags([...tags, tag]);
+      setTags((prev) => [...prev, tag]);
     }
   };
 
   const handleRemoveTag = (tagToRemove) => {
-    setTags(tags.filter(tag => tag !== tagToRemove));
+    setTags((prev) => prev.filter((tag) => tag !== tagToRemove));
   };
 
   const handleInspirationClick = () => {
-    const randomInspiration = travelInspirations[Math.floor(Math.random() * travelInspirations.length)];
-    setInspiration(randomInspiration);
+    const nextPrompt = travelInspirations[Math.floor(Math.random() * travelInspirations.length)];
+    setInspiration(nextPrompt);
   };
 
-  // Loading screen animation
   if (!user) {
-    return <BlogUploadAuthPrompt handleLogin={handleLogin} />;
+    return (
+      <div className="container-shell">
+        <BlogUploadAuthPrompt handleLogin={handleLogin} />
+      </div>
+    );
   }
 
   return (
-    <div className="relative min-h-[80vh] px-4 py-8">
-      {/* Interactive background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-gray-600"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-          >
-            {i % 3 === 0 ? "📍" : i % 3 === 1 ? "📷" : "📖"}
-          </div>
-        ))}
-      </div>
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <BlogUploadHeader user={user} writingProgress={writingProgress} handleLogout={handleLogout} />
-        <div className="grid lg:grid-cols-3 gap-8">
-          <BlogUploadSidebar
-            inspiration={inspiration}
-            handleInspirationClick={handleInspirationClick}
-            tags={tags}
-            handleAddTag={handleAddTag}
-            handleRemoveTag={handleRemoveTag}
-            characterCount={characterCount}
-            content={content}
-          />
-          <div className="lg:col-span-2">
-            {/* Tabs can be re-added here if needed */}
-            <BlogUploadForm
-              title={title}
-              setTitle={setTitle}
+    <section className="container-shell">
+      <div className="relative overflow-hidden rounded-3xl border border-slate-700/60 bg-slate-950/75 p-4 sm:p-6 lg:p-8">
+        <div className="pointer-events-none absolute left-8 top-0 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 right-8 h-44 w-44 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="relative z-10">
+          <BlogUploadHeader user={user} writingProgress={writingProgress} handleLogout={handleLogout} />
+          <div className="grid gap-6 lg:grid-cols-3">
+            <BlogUploadSidebar
+              inspiration={inspiration}
+              handleInspirationClick={handleInspirationClick}
+              tags={tags}
+              handleAddTag={handleAddTag}
+              handleRemoveTag={handleRemoveTag}
+              characterCount={characterCount}
               content={content}
-              setContent={setContent}
-              imageUrl={imageUrl}
-              setImageUrl={setImageUrl}
-              fileInputRef={fileInputRef}
-              loading={loading}
-              handleSubmit={handleSubmit}
-              success={success}
             />
+            <div className="lg:col-span-2">
+              <BlogUploadForm
+                title={title}
+                setTitle={setTitle}
+                content={content}
+                setContent={setContent}
+                imageUrl={imageUrl}
+                setImageUrl={setImageUrl}
+                loading={loading}
+                handleSubmit={handleSubmit}
+                success={success}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

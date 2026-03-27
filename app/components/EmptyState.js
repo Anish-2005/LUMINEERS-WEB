@@ -1,12 +1,12 @@
 export default function EmptyState() {
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6">
-      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 flex items-center justify-center mb-6">
-        <div className="text-5xl">🌌</div>
+    <div className="surface flex min-h-[45vh] flex-col items-center justify-center px-6 text-center">
+      <div className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-600/70 bg-slate-900/75 text-2xl font-semibold text-slate-300">
+        .
       </div>
-      <h3 className="text-2xl font-bold mb-3">The Adventure Awaits</h3>
-      <p className="text-gray-400 max-w-md">
-        No stories have been shared yet. Be the first explorer to document your journey!
+      <h3 className="mb-2 text-2xl font-semibold tracking-tight text-slate-100">No stories published yet</h3>
+      <p className="max-w-md text-sm leading-relaxed text-slate-400">
+        The Chronicle is currently empty. Publish the first journey and set the tone for the community.
       </p>
     </div>
   );
