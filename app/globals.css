@@ -1,326 +1,153 @@
-/* Gradient text utility */
-.text-gradient {
-  background: linear-gradient(90deg, #4a90e2, #ff5c8d, #a259f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Fade-in animation */
-.animate-fade-in {
-  animation: fadeIn 1.2s cubic-bezier(0.4,0,0.2,1) both;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Gradient move animation */
-.animate-gradient-move {
-  background-size: 200% 200%;
-  animation: gradientMove 3s ease-in-out infinite;
-}
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Bounce animation for button */
-.animate-bounce {
-  animation: bounce 1.5s infinite alternate;
-}
-@keyframes bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
-}
-
-/* Zoom-in for hero image */
-.animate-zoom-in {
-  animation: zoomIn 2.5s cubic-bezier(0.4,0,0.2,1) both;
-}
-@keyframes zoomIn {
-  from { transform: scale(1.08); opacity: 0.7; }
-  to { transform: scale(1); opacity: 1; }
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060a13;
+  --foreground: #e5e7eb;
+  --muted: #9ca3af;
+  --surface: rgba(15, 23, 42, 0.7);
+  --surface-strong: rgba(15, 23, 42, 0.9);
+  --surface-border: rgba(148, 163, 184, 0.22);
+  --primary: #2563eb;
+  --primary-strong: #1d4ed8;
+  --secondary: #38bdf8;
+  --success: #22c55e;
+  --danger: #f87171;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-soft: 0 8px 32px rgba(2, 6, 23, 0.28);
+  --shadow-elevated: 0 20px 48px rgba(2, 6, 23, 0.45);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-slate-700/40;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+    background:
+      radial-gradient(circle at 10% 8%, rgba(37, 99, 235, 0.2), transparent 42%),
+      radial-gradient(circle at 92% 90%, rgba(56, 189, 248, 0.14), transparent 36%),
+      linear-gradient(180deg, #060a13 0%, #080f1f 100%);
+    @apply antialiased overflow-x-hidden;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::selection {
+    @apply bg-blue-500/30 text-white;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-}
-/* Global Styles for Cursor */
-:root {
-  --primary-color: #4a90e2;  /* Primary color for cursor (blue) */
-  --secondary-color: #ff5c8d;  /* Secondary color for cursor (pink) */
-  --font-family-sans: 'Arial', sans-serif;
-  --highlight-color: #4a90e2;  /* Highlight color for text */
-}
-
-/* Custom Animated Cursor */
-.animated-cursor {
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  background-color: var(--primary-color);
-  border-radius: 50%;
-  pointer-events: none;
-  transition: width 0.3s ease-in-out, height 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
-}
-
-.animated-cursor.expand {
-  width: 40px;
-  height: 40px;
-  box-shadow: 0 0 30px rgba(74, 144, 226, 0.8), 0 0 60px rgba(74, 144, 226, 0.6);
-  transform: translate(-50%, -50%) scale(1.1); /* Slight scaling to make transition smoother */
-}
-
-.animated-cursor:hover {
-  background-color: var(--secondary-color);
-  transform: scale(1.2); /* Slight scale up on hover */
-}
-
-/* Global body styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family-sans);
-  color: #fff;
-  background-color: #1a202c; /* Dark background */
-}
-
-/* Gradient Background */
-.min-h-screen {
-  background: linear-gradient(to bottom, #1a202c, #4a90e2);
-}
-
-/* Hero Section */
-section.hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
-  background: url('https://c4.wallpaperflare.com/wallpaper/435/1011/720/evening-relaxation-wallpaper-preview.jpg') no-repeat center center/cover;
-}
-
-section.hero .text-center {
-  position: absolute;
-  z-index: 10;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-}
-
-section.hero h1 {
-  font-size: 4rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  transition: transform 0.3s ease-in-out;
-}
-
-section.hero h1:hover {
-  transform: scale(1.05);
-}
-
-section.hero p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-}
-
-section.hero button {
-  background-color: #4a90e2;
-  padding: 10px 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-section.hero button:hover {
-  background-color: #3c7cbf;
-  transform: scale(1.1);
-}
-
-/* Blog Highlights Section */
-section.blog-highlights {
-  padding: 5rem 2rem;
-  background-color: #333;
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-}
-
-section.blog-highlights h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-section.blog-highlights .blog-post {
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-section.blog-highlights .blog-post img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.3s ease;
-}
-
-section.blog-highlights .blog-post:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-section.blog-highlights .blog-post:hover img {
-  opacity: 0.7;
-}
-
-section.blog-highlights .blog-post .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-section.blog-highlights .blog-post:hover .overlay {
-  opacity: 1;
-}
-
-section.blog-highlights .blog-post .overlay p {
-  font-size: 1.25rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Footer */
-footer {
-  background-color: #222;
-  padding: 2rem;
-  text-align: center;
-}
-
-footer p {
-  color: #ccc;
-  font-size: 0.875rem;
-}
-
-/* Responsive Styling */
-@media (min-width: 768px) {
-  section.hero h1 {
-    font-size: 6rem;
+@layer components {
+  .page-shell {
+    @apply relative min-h-screen text-slate-100;
   }
 
-  section.hero p {
-    font-size: 1.5rem;
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  section.hero button {
-    font-size: 1.2rem;
+  .surface {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-soft);
+    @apply rounded-2xl backdrop-blur-xl;
   }
 
-  section.blog-highlights h2 {
-    font-size: 2.5rem;
+  .surface-elevated {
+    background: var(--surface-strong);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-elevated);
+    @apply rounded-3xl backdrop-blur-xl;
   }
 
-  section.blog-highlights .blog-post {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  .section-title {
+    @apply text-3xl font-semibold tracking-tight text-slate-100 md:text-4xl;
+  }
+
+  .section-subtitle {
+    @apply mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base;
+  }
+
+  .label {
+    @apply mb-2 block text-xs font-medium uppercase tracking-[0.12em] text-slate-400;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-slate-700/70 bg-slate-950/70 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 transition outline-none focus:border-blue-400/70 focus:ring-2 focus:ring-blue-500/25;
+  }
+
+  .textarea-field {
+    @apply input-field min-h-[220px] resize-y leading-relaxed;
+  }
+
+  .select-field {
+    @apply input-field appearance-none pr-9;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/40 transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-600 bg-slate-900/70 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-slate-500 hover:bg-slate-800/70;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800/60 hover:text-white;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border border-slate-600/70 bg-slate-800/70 px-3 py-1 text-xs font-medium text-slate-200;
+  }
+
+  .divider-line {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-slate-600/60 to-transparent;
   }
 }
 
-/* Animations */
-@keyframes animate-heading {
-  0% {
-    transform: translateY(-30px);
-    opacity: 0;
-  }
+@keyframes twinkle {
+  0%,
   100% {
-    transform: translateY(0);
-    opacity: 1;
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.2);
   }
 }
 
-/* Fade-in Scroll Animation for Blog Highlights */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
+@keyframes pulseShift {
+  0%,
   100% {
-    opacity: 1;
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.85;
   }
 }
 
-.animate-heading {
-  animation: animate-heading 1s ease-out forwards;
-  align-items: left;
-  font-family: 'Playfair Display', ; /* Playful font */
+.animate-twinkle {
+  animation: twinkle 4s ease-in-out infinite;
 }
 
-/* Button Hover Effects */
-button:hover {
-  background-color: #ff5c8d;
-  transform: scale(1.1);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.animate-pulse-shift {
+  animation: pulseShift 3.5s ease-in-out infinite;
 }
 
-/* Scroll Animations for Sections */
-section {
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 0.5s;
-}
-
-section:nth-child(odd) {
-  animation-delay: 0.7s; /* Delay odd sections a bit more */
-}
-
-section:nth-child(even) {
-  animation-delay: 0.9s; /* Delay even sections a bit more */
-}
-
-/* Mouse Enter Animation for Sections */
-section:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease-in-out;
-}
-/* Glow Effect on Hover for Lumineers Heading */
-
-
-h2:hover {
-  transform: scale(1.1);  /* Optional scale-up effect */
+.animate-reverse {
+  animation-direction: reverse;
 }
