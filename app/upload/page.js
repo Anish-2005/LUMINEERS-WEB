@@ -19,7 +19,7 @@ export default function UploadPage() {
           >
             <p className="badge mb-4">Author workspace</p>
             <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Publish a New Journey</h1>
-            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-300">
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-gray-300">
               Draft, refine, and publish a travel story with structured metadata, visuals, and clear reading flow.
             </p>
           </motion.section>
@@ -30,3 +30,4 @@ export default function UploadPage() {
     </div>
   );
 }
+

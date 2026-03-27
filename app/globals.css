@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --background: #060a13;
-  --foreground: #e5e7eb;
-  --muted: #9ca3af;
-  --surface: rgba(15, 23, 42, 0.7);
-  --surface-strong: rgba(15, 23, 42, 0.9);
-  --surface-border: rgba(148, 163, 184, 0.22);
-  --primary: #2563eb;
-  --primary-strong: #1d4ed8;
-  --secondary: #38bdf8;
-  --success: #22c55e;
-  --danger: #f87171;
+  --background: #0b1020;
+  --foreground: #f3f4f6;
+  --muted: #cbd5e1;
+  --surface: rgba(17, 24, 39, 0.62);
+  --surface-strong: rgba(17, 24, 39, 0.82);
+  --surface-border: rgba(255, 255, 255, 0.14);
+  --primary: #3b82f6;
+  --primary-strong: #2563eb;
+  --secondary: #8b5cf6;
+  --success: #34d399;
+  --danger: #fb7185;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 28px;
@@ -23,7 +23,7 @@
 
 @layer base {
   * {
-    @apply border-slate-700/40;
+    @apply border-white/10;
   }
 
   html,
@@ -35,9 +35,9 @@
     color: var(--foreground);
     font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
     background:
-      radial-gradient(circle at 10% 8%, rgba(37, 99, 235, 0.2), transparent 42%),
-      radial-gradient(circle at 92% 90%, rgba(56, 189, 248, 0.14), transparent 36%),
-      linear-gradient(180deg, #060a13 0%, #080f1f 100%);
+      radial-gradient(circle at 10% 8%, rgba(59, 130, 246, 0.24), transparent 42%),
+      radial-gradient(circle at 92% 90%, rgba(236, 72, 153, 0.2), transparent 36%),
+      linear-gradient(180deg, #0b1020 0%, #111827 52%, #090c14 100%);
     @apply antialiased overflow-x-hidden;
   }
 
@@ -46,13 +46,13 @@
   }
 
   ::selection {
-    @apply bg-blue-500/30 text-white;
+    @apply bg-pink-500/30 text-white;
   }
 }
 
 @layer components {
   .page-shell {
-    @apply relative min-h-screen text-slate-100;
+    @apply relative min-h-screen text-white;
   }
 
   .container-shell {
@@ -74,19 +74,19 @@
   }
 
   .section-title {
-    @apply text-3xl font-semibold tracking-tight text-slate-100 md:text-4xl;
+    @apply text-3xl font-semibold tracking-tight text-white md:text-4xl;
   }
 
   .section-subtitle {
-    @apply mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 md:text-base;
+    @apply mt-3 max-w-2xl text-sm leading-relaxed text-gray-300 md:text-base;
   }
 
   .label {
-    @apply mb-2 block text-xs font-medium uppercase tracking-[0.12em] text-slate-400;
+    @apply mb-2 block text-xs font-medium uppercase tracking-[0.12em] text-gray-400;
   }
 
   .input-field {
-    @apply w-full rounded-xl border border-slate-700/70 bg-slate-950/70 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 transition outline-none focus:border-blue-400/70 focus:ring-2 focus:ring-blue-500/25;
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-gray-500 transition outline-none focus:border-blue-400/70 focus:ring-2 focus:ring-purple-500/20;
   }
 
   .textarea-field {
@@ -98,23 +98,23 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/40 transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/40 transition hover:from-blue-500 hover:to-pink-500 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-600 bg-slate-900/70 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-slate-500 hover:bg-slate-800/70;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800/60 hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-white;
   }
 
   .badge {
-    @apply inline-flex items-center rounded-full border border-slate-600/70 bg-slate-800/70 px-3 py-1 text-xs font-medium text-slate-200;
+    @apply inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-gray-100;
   }
 
   .divider-line {
-    @apply h-px w-full bg-gradient-to-r from-transparent via-slate-600/60 to-transparent;
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/20 to-transparent;
   }
 }
 

@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
           <Suspense
             fallback={
               <div className="page-shell flex min-h-screen items-center justify-center">
-                <div className="surface rounded-2xl px-6 py-4 text-sm text-slate-200">
+                <div className="surface rounded-2xl px-6 py-4 text-sm text-gray-100">
                   Loading experience...
                 </div>
               </div>
@@ -75,3 +75,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

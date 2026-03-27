@@ -8,7 +8,7 @@ export default function BlogUploadImagePreview({ imageUrl }) {
     <motion.div
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      className="overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-900/80"
+      className="overflow-hidden rounded-2xl border border-white/10 bg-gray-900/80"
     >
       <div className="relative h-52">
         <img
@@ -18,9 +18,10 @@ export default function BlogUploadImagePreview({ imageUrl }) {
           loading="lazy"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
-        <p className="absolute bottom-3 left-3 text-xs uppercase tracking-[0.1em] text-slate-200">Cover preview</p>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <p className="absolute bottom-3 left-3 text-xs uppercase tracking-[0.1em] text-gray-100">Cover preview</p>
       </div>
     </motion.div>
   );
 }
+

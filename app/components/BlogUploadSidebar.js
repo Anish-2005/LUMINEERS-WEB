@@ -19,8 +19,8 @@ export default function BlogUploadSidebar({
     <aside className="space-y-4 lg:col-span-1">
       <section className="surface p-5">
         <div className="mb-3 flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-cyan-300" />
-          <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-slate-200">Writing prompt</h3>
+          <Sparkles className="h-4 w-4 text-pink-300" />
+          <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-gray-100">Writing prompt</h3>
         </div>
         <AnimatePresence mode="wait">
           {inspiration ? (
@@ -29,12 +29,12 @@ export default function BlogUploadSidebar({
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              className="mb-3 rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-2 text-sm text-slate-300"
+              className="mb-3 rounded-xl border border-white/10 bg-white/10 px-3 py-2 text-sm text-gray-300"
             >
               {inspiration}
             </motion.p>
           ) : (
-            <p className="mb-3 text-sm text-slate-400">Generate a focused prompt when you need momentum.</p>
+            <p className="mb-3 text-sm text-gray-400">Generate a focused prompt when you need momentum.</p>
           )}
         </AnimatePresence>
         <button onClick={handleInspirationClick} className="btn-secondary w-full justify-center text-xs uppercase tracking-[0.08em]">
@@ -45,7 +45,7 @@ export default function BlogUploadSidebar({
       <section className="surface p-5">
         <div className="mb-3 flex items-center gap-2">
           <Hash className="h-4 w-4 text-blue-300" />
-          <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-slate-200">Tags</h3>
+          <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-gray-100">Tags</h3>
         </div>
         <div className="mb-3 flex min-h-[36px] flex-wrap gap-2">
           {tags.length ? (
@@ -64,7 +64,7 @@ export default function BlogUploadSidebar({
               </motion.span>
             ))
           ) : (
-            <p className="text-xs text-slate-500">Add up to 5 tags.</p>
+            <p className="text-xs text-gray-500">Add up to 5 tags.</p>
           )}
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -73,7 +73,7 @@ export default function BlogUploadSidebar({
               key={tag}
               onClick={() => handleAddTag(tag)}
               disabled={tags.includes(tag)}
-              className="rounded-lg border border-slate-700/70 bg-slate-900/75 px-2 py-2 text-xs text-slate-300 transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-35"
+              className="rounded-lg border border-white/10 bg-white/10 px-2 py-2 text-xs text-gray-300 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
             >
               {tag}
             </button>
@@ -82,22 +82,22 @@ export default function BlogUploadSidebar({
       </section>
 
       <section className="surface p-5">
-        <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-slate-200">Story metrics</h3>
-        <div className="mt-4 space-y-4 text-sm text-slate-300">
+        <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-gray-100">Story metrics</h3>
+        <div className="mt-4 space-y-4 text-sm text-gray-300">
           <div>
-            <div className="mb-1 flex items-center justify-between text-xs uppercase tracking-[0.08em] text-slate-400">
+            <div className="mb-1 flex items-center justify-between text-xs uppercase tracking-[0.08em] text-gray-400">
               <span>Character count</span>
               <span>{characterCount} / 2000</span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+            <div className="h-2 overflow-hidden rounded-full bg-white/10">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                className="h-full rounded-full bg-gradient-to-r from-blue-400 to-blue-500"
                 initial={{ width: 0 }}
                 animate={{ width: `${completion}%` }}
               />
             </div>
           </div>
-          <p className="inline-flex items-center gap-2 text-slate-300">
+          <p className="inline-flex items-center gap-2 text-gray-300">
             <BookOpen size={14} />
             Estimated read time: {readTime} min
           </p>
@@ -106,3 +106,4 @@ export default function BlogUploadSidebar({
     </aside>
   );
 }
+

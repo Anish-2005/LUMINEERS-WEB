@@ -16,7 +16,7 @@ export default function Hero() {
             <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
               Build world-class travel stories that feel like premium digital magazines.
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-300">
               Lumineers helps creators publish, organize, and discover travel narratives with a clean, immersive
               reading and authoring experience.
             </p>
@@ -32,8 +32,8 @@ export default function Hero() {
             </div>
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
               {trustedBy.map((item) => (
-                <div key={item} className="rounded-xl border border-slate-700/60 bg-slate-900/70 px-3 py-2 text-center">
-                  <p className="text-xs font-medium uppercase tracking-[0.08em] text-slate-300">{item}</p>
+                <div key={item} className="rounded-xl border border-white/10 bg-gray-900/70 px-3 py-2 text-center">
+                  <p className="text-xs font-medium uppercase tracking-[0.08em] text-gray-300">{item}</p>
                 </div>
               ))}
             </div>
@@ -48,12 +48,12 @@ export default function Hero() {
                 priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             </div>
-            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-slate-600/60 bg-slate-950/75 p-4 backdrop-blur-xl">
-              <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Latest spotlight</p>
-              <h3 className="mt-1 text-lg font-semibold text-slate-100">Midnight Fjords, Northern Routes</h3>
-              <p className="mt-1 text-sm text-slate-300">A documentary-style exploration of Norway&apos;s winter coast.</p>
+            <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/20 bg-black/75 p-4 backdrop-blur-xl">
+              <p className="text-xs uppercase tracking-[0.14em] text-gray-400">Latest spotlight</p>
+              <h3 className="mt-1 text-lg font-semibold text-white">Midnight Fjords, Northern Routes</h3>
+              <p className="mt-1 text-sm text-gray-300">A documentary-style exploration of Norway&apos;s winter coast.</p>
             </div>
           </div>
         </div>
@@ -61,3 +61,4 @@ export default function Hero() {
     </section>
   );
 }
+

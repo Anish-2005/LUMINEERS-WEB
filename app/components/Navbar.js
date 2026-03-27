@@ -55,21 +55,21 @@ export default function Navbar() {
   const navLinkClass = (isActive) =>
     `rounded-lg px-3 py-2 text-sm font-medium transition ${
       isActive
-        ? "bg-blue-500/20 text-blue-200"
-        : "text-slate-300 hover:bg-slate-800/70 hover:text-white"
+        ? "bg-blue-500/25 text-blue-200"
+        : "text-gray-300 hover:bg-white/10 hover:text-white"
     }`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-950/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-gray-900/70 backdrop-blur-xl">
       <div className={`container-shell transition-all ${scrolled ? "py-3" : "py-4"}`}>
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-blue-400/40 bg-blue-500/20">
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-blue-400/40 bg-blue-500/25">
               <Compass size={18} className="text-blue-200" />
             </span>
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-slate-100">Lumineers</p>
-              <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">Travel Journal Platform</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Lumineers</p>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-gray-400">Travel Journal Platform</p>
             </div>
           </Link>
 
@@ -84,22 +84,22 @@ export default function Navbar() {
           <div className="hidden items-center gap-2 md:flex">
             {user ? (
               <>
-                <div className="inline-flex items-center gap-2 rounded-xl border border-slate-700/70 bg-slate-900/70 px-2.5 py-1.5">
+                <div className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-gray-900/70 px-2.5 py-1.5">
                   {user.photoURL ? (
                     <img
                       src={user.photoURL}
                       alt={user.displayName || "User"}
-                      className="h-8 w-8 rounded-lg border border-slate-600/70 object-cover"
+                      className="h-8 w-8 rounded-lg border border-white/20 object-cover"
                       referrerPolicy="no-referrer"
                     />
                   ) : (
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-slate-700/80 text-xs font-bold">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 text-xs font-bold">
                       {(user.displayName || "U").charAt(0)}
                     </span>
                   )}
                   <div className="max-w-[140px]">
-                    <p className="truncate text-xs font-semibold text-slate-100">{user.displayName || "Explorer"}</p>
-                    <p className="truncate text-[11px] text-slate-400">{user.email || "Signed in"}</p>
+                    <p className="truncate text-xs font-semibold text-white">{user.displayName || "Explorer"}</p>
+                    <p className="truncate text-[11px] text-gray-400">{user.email || "Signed in"}</p>
                   </div>
                 </div>
                 <button type="button" onClick={handleLogout} className="btn-secondary px-3 py-2 text-xs">
@@ -117,7 +117,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
-            className="inline-flex items-center justify-center rounded-xl border border-slate-700/80 bg-slate-900/80 p-2 text-slate-100 md:hidden"
+            className="inline-flex items-center justify-center rounded-xl border border-white/10 bg-gray-900/80 p-2 text-white md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -125,7 +125,7 @@ export default function Navbar() {
         </div>
 
         {mobileOpen ? (
-          <div className="mt-3 space-y-3 rounded-2xl border border-slate-700/70 bg-slate-950/90 p-3 md:hidden">
+          <div className="mt-3 space-y-3 rounded-2xl border border-white/10 bg-black/90 p-3 md:hidden">
             <nav className="grid gap-1">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href} className={navLinkClass(pathname === item.href)}>
@@ -136,7 +136,7 @@ export default function Navbar() {
             <div className="divider-line" />
             {user ? (
               <div className="space-y-2">
-                <p className="text-xs text-slate-300">Signed in as {user.displayName || "Explorer"}</p>
+                <p className="text-xs text-gray-300">Signed in as {user.displayName || "Explorer"}</p>
                 <button type="button" onClick={handleLogout} className="btn-secondary w-full justify-center">
                   <LogOut size={14} />
                   Logout
@@ -153,3 +153,4 @@ export default function Navbar() {
     </header>
   );
 }
+

@@ -9,7 +9,7 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
       <button
         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
         disabled={currentPage === 1}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/70 bg-slate-900/70 text-slate-300 transition hover:bg-slate-800/70 disabled:cursor-not-allowed disabled:opacity-35"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-gray-900/70 text-gray-300 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
       >
         <ChevronLeft className="h-4 w-4" />
       </button>
@@ -30,8 +30,8 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
             onClick={() => setCurrentPage(pageNum)}
             className={`h-10 w-10 rounded-lg border text-sm font-medium transition-all ${
               currentPage === pageNum
-                ? "border-blue-400/50 bg-blue-500/20 text-blue-100"
-                : "border-slate-700/70 bg-slate-900/70 text-slate-300 hover:bg-slate-800/70"
+                ? "border-blue-400/50 bg-blue-500/25 text-blue-100"
+                : "border-white/10 bg-gray-900/70 text-gray-300 hover:bg-white/10"
             }`}
           >
             {pageNum}
@@ -41,7 +41,7 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
       <button
         onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
         disabled={currentPage === totalPages}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/70 bg-slate-900/70 text-slate-300 transition hover:bg-slate-800/70 disabled:cursor-not-allowed disabled:opacity-35"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-gray-900/70 text-gray-300 transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
       >
         <ChevronRight className="h-4 w-4" />
       </button>
@@ -52,3 +52,4 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
 Pagination.displayName = "Pagination";
 
 export default Pagination;
+

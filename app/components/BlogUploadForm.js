@@ -16,9 +16,9 @@ export default function BlogUploadForm({
 }) {
   return (
     <div className="surface-elevated overflow-hidden">
-      <div className="border-b border-slate-700/60 px-6 py-4 sm:px-8">
-        <h2 className="text-lg font-semibold text-slate-100">Story Draft</h2>
-        <p className="mt-1 text-sm text-slate-400">Complete your title, narrative, and optional cover image.</p>
+      <div className="border-b border-white/10 px-6 py-4 sm:px-8">
+        <h2 className="text-lg font-semibold text-white">Story Draft</h2>
+        <p className="mt-1 text-sm text-gray-400">Complete your title, narrative, and optional cover image.</p>
       </div>
       <div className="p-6 sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-7">
@@ -91,3 +91,4 @@ export default function BlogUploadForm({
     </div>
   );
 }
+

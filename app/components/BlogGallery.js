@@ -147,7 +147,7 @@ export default function BlogGallery() {
       </div>
       <Suspense
         fallback={
-          <div className="fixed inset-x-0 bottom-6 z-40 mx-auto w-fit rounded-xl border border-slate-600/80 bg-slate-900/95 px-4 py-2 text-xs text-slate-300">
+          <div className="fixed inset-x-0 bottom-6 z-40 mx-auto w-fit rounded-xl border border-white/20 bg-gray-900/95 px-4 py-2 text-xs text-gray-300">
             Loading story...
           </div>
         }
@@ -161,3 +161,4 @@ export default function BlogGallery() {
     </div>
   );
 }
+

@@ -51,11 +51,11 @@ export default function FeaturedJourneys() {
             const Icon = card.icon;
             return (
               <article key={card.title} className="surface p-6">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-200">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/25 text-blue-200">
                   <Icon size={20} />
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-slate-100">{card.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">{card.description}</p>
+                <h3 className="mt-4 text-xl font-semibold text-white">{card.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-300">{card.description}</p>
               </article>
             );
           })}
@@ -63,9 +63,9 @@ export default function FeaturedJourneys() {
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {metrics.map((metric) => (
-            <div key={metric.label} className="rounded-2xl border border-slate-700/70 bg-slate-950/70 p-4 text-center">
+            <div key={metric.label} className="rounded-2xl border border-white/10 bg-gray-900/70 p-4 text-center">
               <p className="text-2xl font-semibold text-white">{metric.value}</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.1em] text-slate-400">{metric.label}</p>
+              <p className="mt-1 text-xs uppercase tracking-[0.1em] text-gray-400">{metric.label}</p>
             </div>
           ))}
         </div>
@@ -73,3 +73,4 @@ export default function FeaturedJourneys() {
     </section>
   );
 }
+

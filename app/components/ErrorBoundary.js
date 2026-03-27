@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component {
               <AlertTriangle size={22} />
             </span>
             <h3 className="mt-5 text-2xl font-semibold tracking-tight text-white">Something went wrong</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-300">
+            <p className="mt-2 text-sm leading-relaxed text-gray-300">
               An unexpected error interrupted rendering. Refresh the page and try again.
             </p>
             <button onClick={() => window.location.reload()} className="btn-primary mx-auto mt-6">
@@ -38,8 +38,8 @@ class ErrorBoundary extends React.Component {
               Refresh Page
             </button>
             {process.env.NODE_ENV === "development" ? (
-              <details className="mt-6 rounded-xl border border-slate-700/70 bg-slate-950/70 p-3 text-left">
-                <summary className="cursor-pointer text-xs uppercase tracking-[0.1em] text-slate-400">
+              <details className="mt-6 rounded-xl border border-white/10 bg-gray-900/70 p-3 text-left">
+                <summary className="cursor-pointer text-xs uppercase tracking-[0.1em] text-gray-400">
                   Error details
                 </summary>
                 <pre className="mt-3 whitespace-pre-wrap text-xs text-rose-300">
@@ -59,3 +59,4 @@ class ErrorBoundary extends React.Component {
 }
 
 export default ErrorBoundary;
+

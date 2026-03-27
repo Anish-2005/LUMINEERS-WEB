@@ -12,14 +12,15 @@ export default function BlogUploadAuthPrompt({ handleLogin }) {
         <Globe size={30} />
       </motion.span>
       <h2 className="text-3xl font-semibold tracking-tight text-white">Sign in to publish</h2>
-      <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-300">
+      <p className="mt-3 max-w-sm text-sm leading-relaxed text-gray-300">
         You need an authenticated account to create and publish stories in The Chronicle.
       </p>
       <button onClick={handleLogin} className="btn-primary mt-7">
         <Lock size={16} />
         Continue with Google
       </button>
-      <p className="mt-4 text-xs text-slate-500">Authentication secures author attribution and publishing access.</p>
+      <p className="mt-4 text-xs text-gray-500">Authentication secures author attribution and publishing access.</p>
     </div>
   );
 }
+

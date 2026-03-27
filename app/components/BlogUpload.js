@@ -112,9 +112,9 @@ export default function BlogUpload() {
 
   return (
     <section className="container-shell">
-      <div className="relative overflow-hidden rounded-3xl border border-slate-700/60 bg-slate-950/75 p-4 sm:p-6 lg:p-8">
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/75 p-4 sm:p-6 lg:p-8">
         <div className="pointer-events-none absolute left-8 top-0 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 right-8 h-44 w-44 rounded-full bg-cyan-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 right-8 h-44 w-44 rounded-full bg-pink-400/10 blur-3xl" />
         <div className="relative z-10">
           <BlogUploadHeader user={user} writingProgress={writingProgress} handleLogout={handleLogout} />
           <div className="grid gap-6 lg:grid-cols-3">
@@ -146,3 +146,4 @@ export default function BlogUpload() {
     </section>
   );
 }
+
