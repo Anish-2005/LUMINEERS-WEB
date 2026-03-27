@@ -18,6 +18,7 @@ export const metadata = {
   title: "Lumineers",
   description:
     "A modern travel storytelling platform to publish immersive journeys and discover curated experiences.",
+  metadataBase: new URL("https://lumineers-web.com"),
   icons: {
     icon: "/favicon.svg",
   },

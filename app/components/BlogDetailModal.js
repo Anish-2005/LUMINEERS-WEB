@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { motion, AnimatePresence } from "framer-motion";
 import { User, Clock3, X } from "lucide-react";
 

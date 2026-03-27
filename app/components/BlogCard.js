@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { motion } from "framer-motion";
 import { memo } from "react";
 import { User, CalendarDays, Clock3, Heart, Eye, MapPin } from "lucide-react";
