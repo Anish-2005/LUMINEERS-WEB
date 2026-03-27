@@ -1,4 +1,3 @@
-
 "use client";
 import { useEffect, useState, useRef, lazy, Suspense, useMemo, useCallback } from "react";
 import { db } from "../firebase";
@@ -39,16 +38,16 @@ export default function BlogGallery() {
   }, []);
 
   const handleLike = (blogId) => {
-    setLikedBlogs(prev => ({
+    setLikedBlogs((prev) => ({
       ...prev,
-      [blogId]: !prev[blogId]
+      [blogId]: !prev[blogId],
     }));
   };
 
   const handleView = (blogId) => {
-    setViewCounts(prev => ({
+    setViewCounts((prev) => ({
       ...prev,
-      [blogId]: (prev[blogId] || 0) + 1
+      [blogId]: (prev[blogId] || 0) + 1,
     }));
   };
 
@@ -72,7 +71,6 @@ export default function BlogGallery() {
     if (diffDays < 7) return `${diffDays}d ago`;
     return formatDate(date);
   }, [formatDate]);
-
 
   const filteredBlogs = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
@@ -153,7 +151,6 @@ export default function BlogGallery() {
             Loading story...
           </div>
         }
-      )
       >
         <BlogDetailModal
           blog={selectedBlog}

@@ -1,79 +1,25 @@
 import { motion } from "framer-motion";
-import { Globe, Sparkles } from "lucide-react";
-import Image from "next/image";
+import { Globe, Lock } from "lucide-react";
 
 export default function BlogUploadAuthPrompt({ handleLogin }) {
   return (
-    <div className="relative min-h-[80vh] flex items-center justify-center px-4">
-      {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-[2px] h-[2px] bg-blue-400 rounded-full"
-            initial={{ x: Math.random() * 100 + 'vw', y: Math.random() * 100 + 'vh' }}
-            animate={{
-              x: [null, Math.random() * 100 + 'vw'],
-              y: [null, Math.random() * 100 + 'vh'],
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
-      </div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative z-10 max-w-md w-full"
+    <div className="surface-elevated mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-6 py-10 text-center">
+      <motion.span
+        animate={{ rotate: 360 }}
+        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+        className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-400/35 bg-blue-500/15 text-blue-200"
       >
-        <div className="text-center mb-10">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="inline-block mb-6"
-          >
-            <Globe className="w-20 h-20 text-blue-400" />
-          </motion.div>
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            Join the Chronicle
-          </h1>
-          <p className="text-gray-300 text-lg">
-            Share your journey with fellow explorers. Your story awaits.
-          </p>
-        </div>
-        <motion.div
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="relative group"
-        >
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
-          <button
-            onClick={handleLogin}
-            className="relative w-full px-8 py-4 rounded-3xl bg-gray-900/90 backdrop-blur-xl border border-white/10 flex items-center justify-center gap-3 text-xl font-semibold hover:bg-gray-900/70 transition-all"
-          >
-            <Image
-              src="https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png" 
-              alt="Google" 
-              className="w-6 h-6"
-            />
-            Continue with Google
-          </button>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-8 text-center"
-        >
-          <p className="text-gray-400 text-sm">
-            <Sparkles className="inline w-4 h-4 mr-2" />
-            Your first story unlocks exclusive badges
-          </p>
-        </motion.div>
-      </motion.div>
+        <Globe size={30} />
+      </motion.span>
+      <h2 className="text-3xl font-semibold tracking-tight text-white">Sign in to publish</h2>
+      <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-300">
+        You need an authenticated account to create and publish stories in The Chronicle.
+      </p>
+      <button onClick={handleLogin} className="btn-primary mt-7">
+        <Lock size={16} />
+        Continue with Google
+      </button>
+      <p className="mt-4 text-xs text-slate-500">Authentication secures author attribution and publishing access.</p>
     </div>
   );
 }

@@ -1,22 +1,24 @@
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export default function BlogUploadImagePreview({ imageUrl }) {
   if (!imageUrl) return null;
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="relative group overflow-hidden rounded-2xl"
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="overflow-hidden rounded-2xl border border-slate-700/70 bg-slate-900/80"
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-      <Image
-        src={imageUrl}
-        alt="preview"
-        className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-      />
-      <div className="absolute bottom-4 left-4 z-20">
-        <p className="text-sm text-gray-300">Cover Preview</p>
+      <div className="relative h-52">
+        <img
+          src={imageUrl}
+          alt="Cover preview"
+          className="h-full w-full object-cover"
+          loading="lazy"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent" />
+        <p className="absolute bottom-3 left-3 text-xs uppercase tracking-[0.1em] text-slate-200">Cover preview</p>
       </div>
     </motion.div>
   );

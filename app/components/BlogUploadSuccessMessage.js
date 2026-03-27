@@ -1,22 +1,19 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 export default function BlogUploadSuccessMessage({ success }) {
   return (
     <AnimatePresence>
       {success && (
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="text-center py-4 rounded-xl bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30"
+          exit={{ opacity: 0, y: -8 }}
+          className="rounded-xl border border-emerald-400/35 bg-emerald-500/15 px-4 py-3 text-center"
         >
-          <div className="flex items-center justify-center gap-3">
-            <Sparkles className="text-green-400" />
-            <span className="text-green-400 font-semibold">
-              Your story is now traveling the world!
-            </span>
-            <Sparkles className="text-green-400" />
+          <div className="flex items-center justify-center gap-2 text-emerald-200">
+            <CheckCircle2 size={16} />
+            <span className="text-sm font-semibold">Story published successfully.</span>
           </div>
         </motion.div>
       )}
