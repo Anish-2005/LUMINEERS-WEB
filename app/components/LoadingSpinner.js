@@ -1,9 +1,9 @@
 export default function LoadingSpinner() {
   return (
-    <div className="min-h-[60vh] flex items-center justify-center">
+    <div className="surface flex min-h-[45vh] items-center justify-center">
       <div className="relative">
-        <div className="w-16 h-16 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
-        <div className="absolute inset-0 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin animate-reverse"></div>
+        <div className="h-14 w-14 animate-spin rounded-full border-[3px] border-slate-700 border-t-blue-400" />
+        <div className="animate-reverse absolute inset-2 animate-spin rounded-full border-[3px] border-slate-700 border-b-cyan-300" />
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
-import { AnimatePresence } from 'framer-motion';
-import { memo } from 'react';
-import BlogCard from './BlogCard';
+import { AnimatePresence } from "framer-motion";
+import { memo } from "react";
+import BlogCard from "./BlogCard";
 
 const BlogGrid = memo(function BlogGrid({ blogs, likedBlogs, viewCounts, onLike, onView, onSelect }) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       <AnimatePresence>
-        {blogs.map((blog, index) => (
+        {blogs.map((blog) => (
           <BlogCard
             key={blog.id}
             blog={blog}
@@ -22,6 +22,6 @@ const BlogGrid = memo(function BlogGrid({ blogs, likedBlogs, viewCounts, onLike,
   );
 });
 
-BlogGrid.displayName = 'BlogGrid';
+BlogGrid.displayName = "BlogGrid";
 
 export default BlogGrid;

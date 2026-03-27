@@ -1,16 +1,17 @@
-import { memo } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { memo } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Pagination = memo(function Pagination({ totalPages, currentPage, setCurrentPage }) {
   if (totalPages <= 1) return null;
+
   return (
-    <div className="flex justify-center items-center gap-2 mt-16">
+    <div className="mt-12 flex items-center justify-center gap-2">
       <button
-        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
         disabled={currentPage === 1}
-        className="p-2 rounded-lg border border-white/10 hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/70 bg-slate-900/70 text-slate-300 transition hover:bg-slate-800/70 disabled:cursor-not-allowed disabled:opacity-35"
       >
-        <ChevronLeft className="w-5 h-5" />
+        <ChevronLeft className="h-4 w-4" />
       </button>
       {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
         let pageNum;
@@ -27,10 +28,10 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
           <button
             key={pageNum}
             onClick={() => setCurrentPage(pageNum)}
-            className={`w-10 h-10 rounded-lg transition-all ${
+            className={`h-10 w-10 rounded-lg border text-sm font-medium transition-all ${
               currentPage === pageNum
-                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
-                : 'border border-white/10 hover:bg-white/5'
+                ? "border-blue-400/50 bg-blue-500/20 text-blue-100"
+                : "border-slate-700/70 bg-slate-900/70 text-slate-300 hover:bg-slate-800/70"
             }`}
           >
             {pageNum}
@@ -38,16 +39,16 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
         );
       })}
       <button
-        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
         disabled={currentPage === totalPages}
-        className="p-2 rounded-lg border border-white/10 hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700/70 bg-slate-900/70 text-slate-300 transition hover:bg-slate-800/70 disabled:cursor-not-allowed disabled:opacity-35"
       >
-        <ChevronRight className="w-5 h-5" />
+        <ChevronRight className="h-4 w-4" />
       </button>
     </div>
   );
 });
 
-Pagination.displayName = 'Pagination';
+Pagination.displayName = "Pagination";
 
 export default Pagination;

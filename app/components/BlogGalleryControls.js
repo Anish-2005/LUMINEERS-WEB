@@ -1,40 +1,46 @@
-import { Search, Filter } from 'lucide-react';
+import { Search, SlidersHorizontal } from "lucide-react";
 
-export default function BlogGalleryControls({ searchTerm, setSearchTerm, sortBy, setSortBy, filteredCount }) {
+export default function BlogGalleryControls({
+  searchTerm,
+  setSearchTerm,
+  sortBy,
+  setSortBy,
+  filteredCount,
+}) {
   return (
-    <div className="sticky top-20 z-40 backdrop-blur-xl bg-gray-900/80 border-b border-white/10 mb-12">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-          {/* Search */}
-          <div className="relative w-full md:w-96">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+    <div className="sticky top-[72px] z-40 mb-10 border-b border-slate-700/60 bg-slate-950/75 backdrop-blur-xl sm:top-[76px]">
+      <div className="container-shell py-4">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div className="relative w-full md:w-[420px]">
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
             <input
               type="text"
-              placeholder="Search adventures, authors, or destinations..."
+              placeholder="Search stories, authors, or places..."
               value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-              }}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none"
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="input-field pl-10"
             />
           </div>
 
-          {/* Filters */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10">
-              <Filter className="w-4 h-4" />
-              <select 
+          <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-end">
+            <div className="inline-flex items-center gap-2 rounded-xl border border-slate-700/70 bg-slate-900/70 px-3 py-2 text-sm text-slate-300">
+              <SlidersHorizontal className="h-4 w-4" />
+              <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="bg-white/10 text-white placeholder-white focus:outline-none rounded-lg px-2 py-1 border border-white/20"
+                className="select-field !w-auto !border-none !bg-transparent !px-1 !py-0 text-xs uppercase tracking-[0.08em] text-slate-200 focus:!ring-0"
               >
-                <option value="newest" className="bg-gray-900 text-white">Newest First</option>
-                <option value="oldest" className="bg-gray-900 text-white">Oldest First</option>
+                <option value="newest" className="bg-slate-900 text-slate-100">
+                  Newest
+                </option>
+                <option value="oldest" className="bg-slate-900 text-slate-100">
+                  Oldest
+                </option>
               </select>
             </div>
 
-            <div className="text-sm text-gray-400">
-              {filteredCount} {filteredCount === 1 ? 'story' : 'stories'} found
+            <div className="text-xs uppercase tracking-[0.1em] text-slate-400">
+              {filteredCount} {filteredCount === 1 ? "story" : "stories"}
             </div>
           </div>
         </div>

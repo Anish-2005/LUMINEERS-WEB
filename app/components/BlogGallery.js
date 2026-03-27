@@ -1,38 +1,36 @@
 
 "use client";
-import { useEffect, useState, useRef, lazy, Suspense, useMemo, useCallback } from 'react';
-import { db } from '../firebase';
-import { collection, query, orderBy, onSnapshot, limit } from 'firebase/firestore';
+import { useEffect, useState, useRef, lazy, Suspense, useMemo, useCallback } from "react";
+import { db } from "../firebase";
+import { collection, query, orderBy, onSnapshot, limit } from "firebase/firestore";
+import BlogGalleryControls from "./BlogGalleryControls";
+import BlogGrid from "./BlogGrid";
+import Pagination from "./Pagination";
+import LoadingSpinner from "./LoadingSpinner";
+import EmptyState from "./EmptyState";
 
-import BlogGalleryControls from './BlogGalleryControls';
-import BlogGrid from './BlogGrid';
-import Pagination from './Pagination';
-import LoadingSpinner from './LoadingSpinner';
-import EmptyState from './EmptyState';
-
-const BlogDetailModal = lazy(() => import('./BlogDetailModal'));
+const BlogDetailModal = lazy(() => import("./BlogDetailModal"));
 
 export default function BlogGallery() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedBlog, setSelectedBlog] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('newest');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const [likedBlogs, setLikedBlogs] = useState({});
   const [viewCounts, setViewCounts] = useState({});
   const containerRef = useRef(null);
   const blogsPerPage = 9;
 
-
   useEffect(() => {
-    const q = query(collection(db, 'blogs'), orderBy('createdAt', 'desc'), limit(100));
+    const q = query(collection(db, "blogs"), orderBy("createdAt", "desc"), limit(100));
     const unsub = onSnapshot(q, (snap) => {
-      const blogData = snap.docs.map(doc => ({ 
-        id: doc.id, 
+      const blogData = snap.docs.map((doc) => ({
+        id: doc.id,
         ...doc.data(),
         createdAt: doc.data().createdAt?.toDate() || new Date(),
-        readTime: Math.ceil((doc.data().content?.length || 0) / 200)
+        readTime: Math.max(Math.ceil((doc.data().content?.length || 0) / 200), 1),
       }));
       setBlogs(blogData);
       setLoading(false);
@@ -55,10 +53,10 @@ export default function BlogGallery() {
   };
 
   const formatDate = useCallback((date) => {
-    return new Date(date).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric'
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   }, []);
 
@@ -77,39 +75,60 @@ export default function BlogGallery() {
 
 
   const filteredBlogs = useMemo(() => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+
     return blogs
-      .filter(blog => 
-        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.author?.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+      .filter((blog) => {
+        if (!normalizedSearch) return true;
+        const title = blog.title?.toLowerCase() || "";
+        const content = blog.content?.toLowerCase() || "";
+        const author = blog.author?.toLowerCase() || "";
+
+        return (
+          title.includes(normalizedSearch) ||
+          content.includes(normalizedSearch) ||
+          author.includes(normalizedSearch)
+        );
+      })
       .sort((a, b) => {
-        if (sortBy === 'newest') return b.createdAt - a.createdAt;
-        if (sortBy === 'oldest') return a.createdAt - b.createdAt;
+        if (sortBy === "newest") return b.createdAt - a.createdAt;
+        if (sortBy === "oldest") return a.createdAt - b.createdAt;
         return 0;
       })
-      .map(blog => ({ ...blog, timeAgo: getTimeAgo(blog.createdAt) }));
+      .map((blog) => ({ ...blog, timeAgo: getTimeAgo(blog.createdAt) }));
   }, [blogs, searchTerm, sortBy, getTimeAgo]);
 
+  useEffect(() => {
+    const total = Math.max(Math.ceil(filteredBlogs.length / blogsPerPage), 1);
+    if (currentPage > total) {
+      setCurrentPage(total);
+    }
+  }, [currentPage, filteredBlogs.length]);
+
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
-  const paginatedBlogs = filteredBlogs.slice(
-    (currentPage - 1) * blogsPerPage,
-    currentPage * blogsPerPage
-  );
+  const paginatedBlogs = filteredBlogs.slice((currentPage - 1) * blogsPerPage, currentPage * blogsPerPage);
 
   if (loading) {
-    return <LoadingSpinner />;
+    return (
+      <div className="container-shell">
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (!blogs.length) {
-    return <EmptyState />;
+    return (
+      <div className="container-shell">
+        <EmptyState />
+      </div>
+    );
   }
 
   return (
     <div className="relative" ref={containerRef}>
       <BlogGalleryControls
         searchTerm={searchTerm}
-        setSearchTerm={term => {
+        setSearchTerm={(term) => {
           setSearchTerm(term);
           setCurrentPage(1);
         }}
@@ -117,7 +136,7 @@ export default function BlogGallery() {
         setSortBy={setSortBy}
         filteredCount={filteredBlogs.length}
       />
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="container-shell">
         <BlogGrid
           blogs={paginatedBlogs}
           likedBlogs={likedBlogs}
@@ -126,13 +145,16 @@ export default function BlogGallery() {
           onView={handleView}
           onSelect={setSelectedBlog}
         />
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        <Pagination totalPages={totalPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="fixed inset-x-0 bottom-6 z-40 mx-auto w-fit rounded-xl border border-slate-600/80 bg-slate-900/95 px-4 py-2 text-xs text-slate-300">
+            Loading story...
+          </div>
+        }
+      )
+      >
         <BlogDetailModal
           blog={selectedBlog}
           onClose={() => setSelectedBlog(null)}
@@ -141,4 +163,4 @@ export default function BlogGallery() {
       </Suspense>
     </div>
   );
-};
+}
