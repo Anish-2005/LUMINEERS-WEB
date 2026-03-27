@@ -30,7 +30,7 @@ const Pagination = memo(function Pagination({ totalPages, currentPage, setCurren
             onClick={() => setCurrentPage(pageNum)}
             className={`h-10 w-10 rounded-lg border text-sm font-medium transition-all ${
               currentPage === pageNum
-                ? "border-blue-400/50 bg-blue-500/25 text-blue-100"
+                ? "border-purple-300/60 bg-gradient-to-r from-blue-500/25 via-purple-500/25 to-pink-500/25 text-pink-100"
                 : "border-white/10 bg-gray-900/70 text-gray-300 hover:bg-white/10"
             }`}
           >

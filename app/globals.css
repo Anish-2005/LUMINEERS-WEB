@@ -6,12 +6,13 @@
   --background: #0b1020;
   --foreground: #f3f4f6;
   --muted: #cbd5e1;
-  --surface: rgba(17, 24, 39, 0.62);
-  --surface-strong: rgba(17, 24, 39, 0.82);
-  --surface-border: rgba(255, 255, 255, 0.14);
+  --surface: rgba(17, 24, 39, 0.6);
+  --surface-strong: rgba(17, 24, 39, 0.8);
+  --surface-border: rgba(196, 181, 253, 0.22);
   --primary: #3b82f6;
   --primary-strong: #2563eb;
   --secondary: #8b5cf6;
+  --accent: #ec4899;
   --success: #34d399;
   --danger: #fb7185;
   --radius-md: 14px;
@@ -36,6 +37,7 @@
     font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
     background:
       radial-gradient(circle at 10% 8%, rgba(59, 130, 246, 0.24), transparent 42%),
+      radial-gradient(circle at 48% 18%, rgba(139, 92, 246, 0.2), transparent 38%),
       radial-gradient(circle at 92% 90%, rgba(236, 72, 153, 0.2), transparent 36%),
       linear-gradient(180deg, #0b1020 0%, #111827 52%, #090c14 100%);
     @apply antialiased overflow-x-hidden;
@@ -60,14 +62,18 @@
   }
 
   .surface {
-    background: var(--surface);
+    background:
+      linear-gradient(135deg, rgba(59, 130, 246, 0.13), rgba(139, 92, 246, 0.12) 48%, rgba(236, 72, 153, 0.12)),
+      var(--surface);
     border: 1px solid var(--surface-border);
     box-shadow: var(--shadow-soft);
     @apply rounded-2xl backdrop-blur-xl;
   }
 
   .surface-elevated {
-    background: var(--surface-strong);
+    background:
+      linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(139, 92, 246, 0.14) 48%, rgba(236, 72, 153, 0.16)),
+      var(--surface-strong);
     border: 1px solid var(--surface-border);
     box-shadow: var(--shadow-elevated);
     @apply rounded-3xl backdrop-blur-xl;
@@ -86,7 +92,7 @@
   }
 
   .input-field {
-    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-gray-500 transition outline-none focus:border-blue-400/70 focus:ring-2 focus:ring-purple-500/20;
+    @apply w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-gray-500 transition outline-none focus:border-purple-400/70 focus:ring-2 focus:ring-pink-500/20;
   }
 
   .textarea-field {
@@ -98,19 +104,19 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/40 transition hover:from-blue-500 hover:to-pink-500 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-900/40 transition hover:from-blue-400 hover:via-purple-500 hover:to-pink-400 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/10;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-white/30 hover:from-blue-500/20 hover:via-purple-500/20 hover:to-pink-500/20;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-gray-300 transition hover:bg-white/10 hover:text-pink-100;
   }
 
   .badge {
-    @apply inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-gray-100;
+    @apply inline-flex items-center rounded-full border border-white/20 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 px-3 py-1 text-xs font-medium text-gray-100;
   }
 
   .divider-line {

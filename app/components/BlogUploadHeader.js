@@ -37,7 +37,7 @@ export default function BlogUploadHeader({ user, writingProgress, handleLogout }
           </div>
           <div className="h-1.5 w-44 overflow-hidden rounded-full bg-white/10">
             <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-400"
+              className="h-full rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
               initial={{ width: 0 }}
               animate={{ width: `${writingProgress}%` }}
               transition={{ duration: 0.35 }}

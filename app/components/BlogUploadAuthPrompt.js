@@ -7,7 +7,7 @@ export default function BlogUploadAuthPrompt({ handleLogin }) {
       <motion.span
         animate={{ rotate: 360 }}
         transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-        className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-blue-400/35 bg-blue-500/15 text-blue-200"
+        className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-purple-300/35 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 text-pink-100"
       >
         <Globe size={30} />
       </motion.span>

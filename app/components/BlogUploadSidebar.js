@@ -44,7 +44,7 @@ export default function BlogUploadSidebar({
 
       <section className="surface p-5">
         <div className="mb-3 flex items-center gap-2">
-          <Hash className="h-4 w-4 text-blue-300" />
+          <Hash className="h-4 w-4 text-pink-300" />
           <h3 className="text-sm font-semibold uppercase tracking-[0.1em] text-gray-100">Tags</h3>
         </div>
         <div className="mb-3 flex min-h-[36px] flex-wrap gap-2">
@@ -55,10 +55,10 @@ export default function BlogUploadSidebar({
                 layout
                 initial={{ scale: 0.92, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="inline-flex items-center gap-1 rounded-full border border-blue-400/35 bg-blue-500/15 px-2.5 py-1 text-xs text-blue-100"
+                className="inline-flex items-center gap-1 rounded-full border border-purple-300/35 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 px-2.5 py-1 text-xs text-pink-100"
               >
                 {tag}
-                <button onClick={() => handleRemoveTag(tag)} className="text-blue-100/80 hover:text-white">
+                <button onClick={() => handleRemoveTag(tag)} className="text-pink-100/80 hover:text-white">
                   <X size={12} />
                 </button>
               </motion.span>
@@ -91,7 +91,7 @@ export default function BlogUploadSidebar({
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-white/10">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-blue-400 to-blue-500"
+                className="h-full rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
                 initial={{ width: 0 }}
                 animate={{ width: `${completion}%` }}
               />

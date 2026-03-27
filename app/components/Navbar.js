@@ -55,7 +55,7 @@ export default function Navbar() {
   const navLinkClass = (isActive) =>
     `rounded-lg px-3 py-2 text-sm font-medium transition ${
       isActive
-        ? "bg-blue-500/25 text-blue-200"
+        ? "bg-gradient-to-r from-blue-500/25 via-purple-500/25 to-pink-500/25 text-pink-100"
         : "text-gray-300 hover:bg-white/10 hover:text-white"
     }`;
 
@@ -64,8 +64,8 @@ export default function Navbar() {
       <div className={`container-shell transition-all ${scrolled ? "py-3" : "py-4"}`}>
         <div className="flex items-center justify-between gap-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-blue-400/40 bg-blue-500/25">
-              <Compass size={18} className="text-blue-200" />
+            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-purple-300/40 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30">
+              <Compass size={18} className="text-pink-100" />
             </span>
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Lumineers</p>

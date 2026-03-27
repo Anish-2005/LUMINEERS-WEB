@@ -8,7 +8,7 @@ export default function BlogGalleryControls({
   filteredCount,
 }) {
   return (
-    <div className="sticky top-[72px] z-40 mb-10 border-b border-white/10 bg-black/75 backdrop-blur-xl sm:top-[76px]">
+    <div className="sticky top-[72px] z-40 mb-10 border-b border-purple-300/20 bg-black/75 backdrop-blur-xl sm:top-[76px]">
       <div className="container-shell py-4">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="relative w-full md:w-[420px]">
@@ -23,7 +23,7 @@ export default function BlogGalleryControls({
           </div>
 
           <div className="flex w-full items-center justify-between gap-3 md:w-auto md:justify-end">
-            <div className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-gray-900/70 px-3 py-2 text-sm text-gray-300">
+            <div className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-pink-500/15 px-3 py-2 text-sm text-gray-300">
               <SlidersHorizontal className="h-4 w-4" />
               <select
                 value={sortBy}

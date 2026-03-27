@@ -18,7 +18,9 @@ export default function UploadPage() {
             className="mb-8 surface-elevated p-7 sm:mb-10 sm:p-10"
           >
             <p className="badge mb-4">Author workspace</p>
-            <h1 className="text-4xl font-semibold tracking-tight text-white md:text-5xl">Publish a New Journey</h1>
+            <h1 className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-4xl font-semibold tracking-tight text-transparent md:text-5xl">
+              Publish a New Journey
+            </h1>
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-gray-300">
               Draft, refine, and publish a travel story with structured metadata, visuals, and clear reading flow.
             </p>

@@ -68,7 +68,7 @@ const BlogCard = memo(function BlogCard({ blog, liked, views, onLike, onView, on
             </div>
           </div>
 
-          <h3 className="mb-3 line-clamp-2 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-blue-300">
+          <h3 className="mb-3 line-clamp-2 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-pink-200">
             {blog.title}
           </h3>
           <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-gray-300">

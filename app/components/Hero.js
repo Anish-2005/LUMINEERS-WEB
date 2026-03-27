@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="surface-elevated relative p-8 sm:p-10">
             <span className="badge mb-5">Editorial storytelling platform</span>
-            <h1 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-4xl font-semibold leading-tight tracking-tight text-transparent sm:text-5xl lg:text-6xl">
               Build world-class travel stories that feel like premium digital magazines.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-gray-300">

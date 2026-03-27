@@ -51,7 +51,7 @@ export default function FeaturedJourneys() {
             const Icon = card.icon;
             return (
               <article key={card.title} className="surface p-6">
-                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/25 text-blue-200">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30 text-pink-100">
                   <Icon size={20} />
                 </div>
                 <h3 className="mt-4 text-xl font-semibold text-white">{card.title}</h3>
