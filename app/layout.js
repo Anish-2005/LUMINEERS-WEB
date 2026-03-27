@@ -15,47 +15,105 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Lumineers",
+  metadataBase: new URL("https://lumineers-web.vercel.app"),
+  title: {
+    default: "Lumineers | Travel Stories and Journals",
+    template: "%s | Lumineers",
+  },
   description:
-    "A modern travel storytelling platform to publish immersive journeys and discover curated experiences.",
-  metadataBase: new URL("https://lumineers-web.com"),
+    "Lumineers is a travel storytelling platform where explorers publish immersive journeys, destination notes, and visual travel journals.",
+  applicationName: "Lumineers",
+  manifest: "/manifest.json",
   icons: {
     icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
   },
-  applicationName: "Lumineers",
+  keywords: [
+    "travel blog",
+    "travel stories",
+    "travel journal",
+    "adventure blog",
+    "destination guides",
+    "travel photography",
+    "Lumineers",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  category: "travel",
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Lumineers",
+    title: "Lumineers | Travel Stories and Journals",
     description:
-      "Publish your travel stories and explore editorial-quality journals from explorers around the world.",
+      "Publish travel stories and explore editorial-quality journals from explorers around the world.",
+    url: "https://lumineers-web.vercel.app",
+    siteName: "Lumineers",
     type: "website",
-    images: ["/favicon.svg"],
+    locale: "en_US",
+    images: [
+      {
+        url: "/image.png",
+        width: 1200,
+        height: 630,
+        alt: "Lumineers travel storytelling platform",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lumineers",
+    title: "Lumineers | Travel Stories and Journals",
     description:
-      "Publish your travel stories and explore editorial-quality journals from explorers around the world.",
-    images: ["/favicon.svg"],
+      "Publish travel stories and explore editorial-quality journals from explorers around the world.",
+    images: ["/image.png"],
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0b1020",
+};
+
 export default function RootLayout({ children }) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Lumineers",
+    url: "https://lumineers-web.vercel.app",
+    logo: "https://lumineers-web.vercel.app/favicon.svg",
+    sameAs: ["https://lumineers-web.vercel.app"],
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Lumineers",
+    url: "https://lumineers-web.vercel.app",
+    description:
+      "Lumineers is a travel storytelling platform where explorers publish immersive journeys and destination journals.",
+    inLanguage: "en",
+  };
+
   return (
     <html lang="en">
       <head>
-        <meta charSet="UTF-8" />
-        <meta
-          name="description"
-          content="A modern travel storytelling platform where explorers publish immersive journals and discover authentic journeys."
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
-        <meta
-          name="keywords"
-          content="travel blog, stories, explorer, journeys, travel photography, lume, lumineers"
-        />
-        <meta name="author" content="Lumineers" />
-        <meta name="robots" content="index,follow" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#060a13" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ErrorBoundary>
