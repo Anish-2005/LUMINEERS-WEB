@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
+import BrandLogo from "./BrandLogo";
 
 const footerLinks = [
   { label: "Privacy", href: "#" },
@@ -21,6 +22,7 @@ export default function Footer() {
       <div className="container-shell py-7">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
+            <BrandLogo className="mb-2" markClassName="h-7 w-7" textClassName="text-xs" />
             <p className="flex items-center gap-1.5 text-sm text-gray-300">
               <span>&copy; {year} Lumineers.</span>
               <span>Built with</span>

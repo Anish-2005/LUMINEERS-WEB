@@ -2,6 +2,7 @@
 
 import React from "react";
 import { AlertTriangle, RefreshCw } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="page-shell flex min-h-screen items-center justify-center px-6">
           <div className="surface-elevated w-full max-w-lg p-8 text-center">
+            <BrandLogo className="mx-auto mb-4 w-fit" withWordmark={false} markClassName="h-12 w-12" />
             <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-rose-400/40 bg-rose-500/15 text-rose-200">
               <AlertTriangle size={22} />
             </span>

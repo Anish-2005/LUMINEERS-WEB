@@ -1,54 +1,24 @@
-<svg width="256" height="256" viewBox="0 0 256 256" fill="none"
-     xmlns="http://www.w3.org/2000/svg">
-
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="lumineerGradient" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F472B6"/>
-      <stop offset="50%" stop-color="#8B5CF6"/>
-      <stop offset="100%" stop-color="#38BDF8"/>
+    <linearGradient id="orbitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="52%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
     </linearGradient>
-
-    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFFFFF"/>
-      <stop offset="100%" stop-color="#A855F7"/>
-    </radialGradient>
-
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="coreGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="55%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
   </defs>
 
-  <!-- Outer Orbit -->
-  <circle cx="128" cy="128" r="92"
-          stroke="url(#lumineerGradient)"
-          stroke-width="3"
-          opacity="0.5"/>
+  <circle cx="128" cy="128" r="94" stroke="url(#orbitGradient)" stroke-width="8" opacity="0.72"/>
+  <circle cx="128" cy="128" r="66" stroke="url(#orbitGradient)" stroke-width="4" opacity="0.38"/>
 
-  <!-- Inner Orbit -->
-  <circle cx="128" cy="128" r="64"
-          stroke="url(#lumineerGradient)"
-          stroke-width="2"
-          opacity="0.35"/>
+  <path d="M92 66H122V154H184V188H92V66Z" fill="url(#coreGradient)"/>
+  <path d="M124 94H162L124 132V94Z" fill="white" opacity="0.24"/>
 
-  <!-- Central Star -->
-  <path d="
-    M128 86
-    L138 118
-    L170 128
-    L138 138
-    L128 170
-    L118 138
-    L86 128
-    L118 118
-    Z"
-    fill="url(#coreGlow)"
-    filter="url(#softGlow)"/>
-
-  <!-- Guiding Dot -->
-  <circle cx="190" cy="90" r="5" fill="#38BDF8"/>
-  <circle cx="70" cy="170" r="4" fill="#F472B6"/>
+  <circle cx="188" cy="72" r="8" fill="#EC4899"/>
+  <circle cx="68" cy="186" r="7" fill="#38BDF8"/>
+  <circle cx="128" cy="128" r="7" fill="white" opacity="0.85"/>
 </svg>

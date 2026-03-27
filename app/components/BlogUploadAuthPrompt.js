@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Globe, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 export default function BlogUploadAuthPrompt({ handleLogin }) {
   return (
@@ -7,9 +8,9 @@ export default function BlogUploadAuthPrompt({ handleLogin }) {
       <motion.span
         animate={{ rotate: 360 }}
         transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
-        className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-purple-300/35 bg-gradient-to-br from-blue-500/20 via-purple-500/20 to-pink-500/20 text-pink-100"
+        className="mb-5"
       >
-        <Globe size={30} />
+        <BrandLogo withWordmark={false} markClassName="h-16 w-16" />
       </motion.span>
       <h2 className="text-3xl font-semibold tracking-tight text-white">Sign in to publish</h2>
       <p className="mt-3 max-w-sm text-sm leading-relaxed text-gray-300">

@@ -6,7 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
-import { Compass, LogOut, Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -63,14 +64,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-gray-900/70 backdrop-blur-xl">
       <div className={`container-shell transition-all ${scrolled ? "py-3" : "py-4"}`}>
         <div className="flex items-center justify-between gap-4">
-          <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-purple-300/40 bg-gradient-to-br from-blue-500/30 via-purple-500/30 to-pink-500/30">
-              <Compass size={18} className="text-pink-100" />
-            </span>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white">Lumineers</p>
-              <p className="text-[11px] uppercase tracking-[0.16em] text-gray-400">Travel Journal Platform</p>
-            </div>
+          <Link href="/" className="inline-flex items-center">
+            <BrandLogo
+              withSubtitle
+              markClassName="h-9 w-9"
+              textClassName="text-xs sm:text-sm"
+              subtitleClassName="hidden sm:block"
+            />
           </Link>
 
           <nav className="hidden items-center gap-1 md:flex">

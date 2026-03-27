@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, NotebookPen } from "lucide-react";
+import BrandLogo from "./BrandLogo";
 
 const trustedBy = ["Independent Creators", "Travel Collectives", "Editorial Teams", "Adventure Clubs"];
 
@@ -12,6 +13,7 @@ export default function Hero() {
       <div className="container-shell">
         <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="surface-elevated relative p-8 sm:p-10">
+            <BrandLogo withWordmark={false} markClassName="absolute right-6 top-6 h-10 w-10 opacity-85" />
             <span className="badge mb-5">Editorial storytelling platform</span>
             <h1 className="bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-4xl font-semibold leading-tight tracking-tight text-transparent sm:text-5xl lg:text-6xl">
               Build world-class travel stories that feel like premium digital magazines.
