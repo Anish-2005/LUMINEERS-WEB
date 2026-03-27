@@ -1,35 +1,71 @@
 "use client";
-export default function FeaturedJourneys({ setCursorExpand }) {
+
+import Link from "next/link";
+import { Camera, Globe2, NotebookPen, Users } from "lucide-react";
+
+const highlightCards = [
+  {
+    title: "Narrative-led Publishing",
+    description: "Create long-form stories with visual sections, curated pacing, and clean reading surfaces.",
+    icon: NotebookPen,
+  },
+  {
+    title: "Community Discovery",
+    description: "Readers can filter by themes, discover creators, and follow the journeys that match their interests.",
+    icon: Users,
+  },
+  {
+    title: "Visual Story Collections",
+    description: "Combine photography, destination context, and practical notes into reusable trip journals.",
+    icon: Camera,
+  },
+];
+
+const metrics = [
+  { label: "Published Stories", value: "1.2k+" },
+  { label: "Monthly Readers", value: "48k" },
+  { label: "Contributing Authors", value: "380+" },
+  { label: "Destinations Covered", value: "95" },
+];
+
+export default function FeaturedJourneys() {
   return (
-    <section className="py-20 px-6 relative">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Featured Journeys
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Discover stories that transport you to distant lands and hidden gems
-          </p>
+    <section className="pb-16 pt-8 sm:pb-24">
+      <div className="container-shell">
+        <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h2 className="section-title">Designed for modern travel publishing teams</h2>
+            <p className="section-subtitle">
+              Build a professional storytelling brand with consistent layouts, strong readability, and clear content
+              discovery.
+            </p>
+          </div>
+          <Link href="/blogs" className="btn-ghost w-fit">
+            View all journals
+            <Globe2 size={15} />
+          </Link>
         </div>
-        {/* Placeholder for blog cards - Same as original but enhanced */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((item) => (
-            <div 
-              key={item}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:backdrop-blur-md transition-all duration-500 hover:scale-105 hover:border-white/20 cursor-pointer"
-              onMouseEnter={() => setCursorExpand(true)}
-              onMouseLeave={() => setCursorExpand(false)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="h-48 bg-gradient-to-br from-blue-900/50 to-purple-900/50" />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-blue-300 transition-colors">
-                  Adventure Awaits
-                </h3>
-                <p className="text-gray-400 group-hover:text-gray-300 transition-colors">
-                  Explore breathtaking destinations through immersive storytelling
-                </p>
-              </div>
+
+        <div className="grid gap-5 lg:grid-cols-3">
+          {highlightCards.map((card) => {
+            const Icon = card.icon;
+            return (
+              <article key={card.title} className="surface p-6">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/20 text-blue-200">
+                  <Icon size={20} />
+                </div>
+                <h3 className="mt-4 text-xl font-semibold text-slate-100">{card.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-300">{card.description}</p>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="rounded-2xl border border-slate-700/70 bg-slate-950/70 p-4 text-center">
+              <p className="text-2xl font-semibold text-white">{metric.value}</p>
+              <p className="mt-1 text-xs uppercase tracking-[0.1em] text-slate-400">{metric.label}</p>
             </div>
           ))}
         </div>
